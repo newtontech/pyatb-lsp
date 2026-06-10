@@ -6,6 +6,7 @@ import sys
 from pathlib import Path
 
 from .analyzer import analyze_path, format_text
+from .server import create_server
 
 
 def lsp_main(argv: list[str] | None = None) -> int:
@@ -14,9 +15,9 @@ def lsp_main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
     if not args.stdio:
         parser.error("only --stdio is currently supported")
-    print(
-        f"{'pyatb-lsp'} scaffold: full JSON-RPC LSP is tracked in roadmap issues", file=sys.stderr
-    )
+    server = create_server()
+    print("pyatb-lsp: starting LSP server on stdio", file=sys.stderr)
+    server.start_io()
     return 0
 
 
