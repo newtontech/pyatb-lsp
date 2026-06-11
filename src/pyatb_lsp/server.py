@@ -289,7 +289,7 @@ def create_server() -> PyATBServer:
 # ---------------------------------------------------------------------------
 
 
-class PyATBServer(LanguageServer):
+class PyATBServer(LanguageServer):  # type: ignore[misc]
     """Language Server for PyATB workflow scripts.
 
     Provides diagnostics, formatting, completion, hover, and code actions
