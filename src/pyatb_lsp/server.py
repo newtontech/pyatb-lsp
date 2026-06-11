@@ -31,11 +31,10 @@ from lsprotocol.types import (
     MarkupContent,
     MarkupKind,
     Position,
-    PublishDiagnosticsParams,
     Range,
     TextDocumentSyncKind,
 )
-from pygls.lsp.server import LanguageServer
+from pygls.server import LanguageServer
 
 from pyatb_lsp.analyzer import analyze_file, format_text
 
@@ -318,8 +317,7 @@ class PyATBServer(LanguageServer):
     def _do_diagnose(self, uri: str, content: str) -> None:
         """Compute and publish diagnostics for a document."""
         diagnostics = diagnose_document(uri, content)
-        params = PublishDiagnosticsParams(uri=uri, diagnostics=diagnostics)
-        self.text_document_publish_diagnostics(params)
+        self.publish_diagnostics(uri, diagnostics)
 
     def did_open(self, params: DidOpenTextDocumentParams) -> None:
         """Called when a document is opened in the editor."""
