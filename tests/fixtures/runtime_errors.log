@@ -1,0 +1,5 @@
+Starting pyatb calculation
+Error: could not parse HR.dat header
+FileNotFoundError: No such file or directory: 'SR.dat'
+ModuleNotFoundError: No module named 'pyatb'
+Segmentation fault (core dumped)

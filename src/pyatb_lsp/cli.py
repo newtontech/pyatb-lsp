@@ -5,7 +5,7 @@ import json
 import sys
 from pathlib import Path
 
-from .analyzer import analyze_path, format_text
+from .analyzer import analyze_path, format_text, parse_log_content
 from .server import create_server
 
 
@@ -49,6 +49,28 @@ def fmt_main(argv: list[str] | None = None) -> int:
         else:
             print(formatted, end="")
     return 0
+
+
+def log_main(argv: list[str] | None = None) -> int:
+    """Parse a runtime log file for errors (#22)."""
+    parser = argparse.ArgumentParser(prog="pyatb-log")
+    parser.add_argument("path", type=Path, help="path to log file")
+    parser.add_argument("--json", action="store_true")
+    args = parser.parse_args(argv)
+    try:
+        content = args.path.read_text(encoding="utf-8")
+    except (OSError, UnicodeDecodeError) as exc:
+        print(f"error reading {args.path}: {exc}", file=sys.stderr)
+        return 2
+    diagnostics = parse_log_content(content, str(args.path))
+    if args.json:
+        print(json.dumps([item.to_json() for item in diagnostics], indent=2, sort_keys=True))
+    else:
+        for item in diagnostics:
+            print(
+                f"{item.file}:{item.line}:{item.column}: {item.severity} {item.code} {item.message}"
+            )
+    return 1 if any(item.severity == "error" for item in diagnostics) else 0
 
 
 def test_main(argv: list[str] | None = None) -> int:

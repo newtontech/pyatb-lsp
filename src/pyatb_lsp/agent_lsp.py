@@ -1,4 +1,8 @@
-"""Small Python API wrapper around the Diagnostic Engine v1 CLI contract."""
+"""Agent-facing API wrapper for Diagnostic Engine v1 operations.
+
+Provides (#11) Agent JSON capability with full diagnostics payload,
+and (#22) runtime log parser integration.
+"""
 
 from __future__ import annotations
 
@@ -7,6 +11,7 @@ from tempfile import TemporaryDirectory
 from typing import Any
 from urllib.parse import urlparse
 
+from .analyzer import parse_log_content
 from .rich_diagnostics import agent_check_payload
 from .tool import SOFTWARE, check_path
 
@@ -58,4 +63,57 @@ class AgentLSP:
     def symbols(self) -> dict[str, Any]:
         payload = agent_check_payload(software=SOFTWARE, uri=self.uri, operation="symbols")
         payload["items"] = []
+        return payload
+
+    def agent_json(self) -> dict[str, Any]:
+        """Build the full agent JSON payload (#11).
+
+        Returns
+        -------
+        dict[str, Any]
+            The diagnostic payload with capabilities and rule code metadata.
+        """
+        payload = self.check()
+        payload["capabilities"] = {
+            "hover": True,
+            "completion": True,
+            "formatting": True,
+            "code_actions": True,
+            "diagnostics": True,
+            "log_parser": True,
+        }
+        payload["rule_codes"] = {
+            "PYATB-E070": "Python syntax errors",
+            "PYATB-E071": "Missing required imports",
+            "PYATB-E072": "Missing required symbols",
+            "PYATB-E073": "Invalid JSON in configuration",
+            "PYATB-E074": "Missing structure reference",
+            "PYATB-W070": "Missing output path",
+            "PYATB-E075": "Runtime log traceback",
+        }
+        return payload
+
+    def parse_log(self, log_content: str) -> dict[str, Any]:
+        """Parse runtime log content for errors (#22).
+
+        Parameters
+        ----------
+        log_content
+            The log file text to parse.
+
+        Returns
+        -------
+        dict[str, Any]
+            Payload with parsed log diagnostics.
+        """
+        diagnostics = parse_log_content(log_content, self.uri)
+        payload = agent_check_payload(
+            software=SOFTWARE,
+            uri=self.uri,
+            operation="parse_log",
+            diagnostics=diagnostics,
+            path=self.uri,
+        )
+        payload["log_parsed"] = True
+        payload["log_diagnostics_count"] = len(diagnostics)
         return payload
