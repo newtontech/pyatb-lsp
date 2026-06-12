@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import logging
 from pathlib import Path
+from typing import Any
 
 from lsprotocol.types import (
     TEXT_DOCUMENT_CODE_ACTION,
@@ -464,7 +465,7 @@ def get_code_actions(uri: str, content: str, diagnostics: list[Diagnostic]) -> l
     return actions
 
 
-def get_agent_json(uri: str, content: str) -> dict:
+def get_agent_json(uri: str, content: str) -> dict[str, Any]:
     """Build the agent-facing JSON payload for diagnostics (#11).
 
     Parameters
