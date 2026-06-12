@@ -61,3 +61,8 @@ docs/
 - Chinese headings with English terms
 - Technical terms preserved in English
 - Code examples in original form
+
+
+## 2026-06-12 Normalization
+
+The canonical agent-discoverable layout is the repository root `raw/`, `wiki/`, `index.md`, and `log.md` structure registered by Bohrium. The older `docs/raw` and `docs/wiki` paths were migrated to the root layout.
