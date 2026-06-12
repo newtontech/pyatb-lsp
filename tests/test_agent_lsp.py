@@ -77,11 +77,7 @@ class TestAgentLSPLogParser:
 
     def test_parse_log_with_traceback(self):
         agent = AgentLSP()
-        content = (
-            "Traceback (most recent call last):\n"
-            "  File 'run.py'\n"
-            "Error: bad\n"
-        )
+        content = "Traceback (most recent call last):\n  File 'run.py'\nError: bad\n"
         payload = agent.parse_log(content)
         assert payload["log_parsed"] is True
         assert payload["log_diagnostics_count"] >= 1

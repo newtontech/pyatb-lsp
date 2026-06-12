@@ -44,7 +44,12 @@ MATMASTER_REQUIRED_REFERENCES = ["HR.dat"]
 MATMASTER_OPTIONAL_REFERENCES = ["SR.dat"]
 MATMASTER_OUTPUT_KEYWORDS = ["output", "out_file", "output_path", "result_dir"]
 MATMASTER_STRUCTURE_REFERENCES = [
-    "hr_file", "sr_file", "HR.dat", "SR.dat", "TightBinding", "TB",
+    "hr_file",
+    "sr_file",
+    "HR.dat",
+    "SR.dat",
+    "TightBinding",
+    "TB",
 ]
 
 
@@ -92,9 +97,7 @@ def analyze_file(path: Path) -> list[Diagnostic]:
         content = path.read_text(encoding="utf-8")
     except UnicodeDecodeError:
         return [
-            Diagnostic(
-                f"{CODE_PREFIX}202", "error", "file is not valid UTF-8 text", str(path), 1
-            )
+            Diagnostic(f"{CODE_PREFIX}202", "error", "file is not valid UTF-8 text", str(path), 1)
         ]
     if DOMAIN_KIND == "python":
         return _analyze_python(path, content)
@@ -182,8 +185,7 @@ def _domain_text_checks(
             )
     if DOMAIN_ID == "abinit":
         has_structure = any(
-            token in content.lower()
-            for token in ("natom", "xred", "xcart", "znucl", "typat")
+            token in content.lower() for token in ("natom", "xred", "xcart", "znucl", "typat")
         )
         if not has_structure:
             diagnostics.append(
@@ -336,8 +338,7 @@ def _analyze_python(path: Path, content: str) -> list[Diagnostic]:
                 code="PYATB-W070",
                 severity="warning",
                 message=(
-                    "no output path specified "
-                    "(consider adding output, out_file, or result_dir)"
+                    "no output path specified (consider adding output, out_file, or result_dir)"
                 ),
                 file=str(path),
                 line=1,
@@ -395,9 +396,7 @@ def _analyze_json_or_text(path: Path, content: str) -> list[Diagnostic]:
                 confidence=1.0,
             ),
             # Legacy compat
-            Diagnostic(
-                f"{CODE_PREFIX}001", "error", exc.msg, str(path), exc.lineno, exc.colno
-            ),
+            Diagnostic(f"{CODE_PREFIX}001", "error", exc.msg, str(path), exc.lineno, exc.colno),
         ]
     diagnostics: list[Diagnostic] = []
     if isinstance(payload, dict):
@@ -583,12 +582,40 @@ def _meaningful_lines(content: str) -> list[tuple[int, str]]:
 # Safe formatter (#5)
 # ---------------------------------------------------------------------------
 
-_PYTHON_STATEMENT_KEYWORDS = frozenset({
-    "import", "from", "def", "class", "if", "elif", "else", "for",
-    "while", "try", "except", "finally", "with", "return", "raise",
-    "pass", "break", "continue", "yield", "assert", "del", "global",
-    "nonlocal", "lambda", "and", "or", "not", "is", "in", "as",
-})
+_PYTHON_STATEMENT_KEYWORDS = frozenset(
+    {
+        "import",
+        "from",
+        "def",
+        "class",
+        "if",
+        "elif",
+        "else",
+        "for",
+        "while",
+        "try",
+        "except",
+        "finally",
+        "with",
+        "return",
+        "raise",
+        "pass",
+        "break",
+        "continue",
+        "yield",
+        "assert",
+        "del",
+        "global",
+        "nonlocal",
+        "lambda",
+        "and",
+        "or",
+        "not",
+        "is",
+        "in",
+        "as",
+    }
+)
 
 
 def _is_python_statement(stripped: str) -> bool:
@@ -622,11 +649,7 @@ def format_text(content: str) -> str:
         stripped = raw.strip()
 
         # Pass through blank lines, comments, and Python keywords unchanged
-        if (
-            not stripped
-            or stripped.startswith(COMMENT_PREFIXES)
-            or _is_python_statement(stripped)
-        ):
+        if not stripped or stripped.startswith(COMMENT_PREFIXES) or _is_python_statement(stripped):
             lines.append(raw.rstrip())
             continue
 

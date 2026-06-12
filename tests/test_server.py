@@ -241,7 +241,8 @@ class TestHoverInfo:
 
 class TestCodeActions:
     def test_code_action_for_missing_import(self):
-        from lsprotocol.types import Diagnostic as LspDiag, Range, Position
+        from lsprotocol.types import Diagnostic as LspDiag
+        from lsprotocol.types import Position, Range
 
         content = "print('hello')\n"
         diag = LspDiag(
@@ -259,7 +260,8 @@ class TestCodeActions:
         assert any("import pyatb" in t for t in titles)
 
     def test_code_action_for_missing_structure(self):
-        from lsprotocol.types import Diagnostic as LspDiag, Range, Position
+        from lsprotocol.types import Diagnostic as LspDiag
+        from lsprotocol.types import Position, Range
 
         content = "import pyatb\nresult = 42\n"
         diag = LspDiag(
@@ -275,7 +277,8 @@ class TestCodeActions:
         assert len(actions) >= 1
 
     def test_code_action_for_missing_output(self):
-        from lsprotocol.types import Diagnostic as LspDiag, Range, Position
+        from lsprotocol.types import Diagnostic as LspDiag
+        from lsprotocol.types import Position, Range
 
         content = 'import pyatb\nhr_file = "HR.dat"\n'
         diag = LspDiag(
@@ -293,7 +296,8 @@ class TestCodeActions:
         assert any("output" in t.lower() for t in titles)
 
     def test_code_action_for_syntax_error(self):
-        from lsprotocol.types import Diagnostic as LspDiag, Range, Position
+        from lsprotocol.types import Diagnostic as LspDiag
+        from lsprotocol.types import Position, Range
 
         content = "def broken(\n"
         diag = LspDiag(
@@ -313,7 +317,8 @@ class TestCodeActions:
         assert len(actions) == 0
 
     def test_code_action_add_import_has_edit(self):
-        from lsprotocol.types import Diagnostic as LspDiag, Range, Position
+        from lsprotocol.types import Diagnostic as LspDiag
+        from lsprotocol.types import Position, Range
 
         content = "print('hello')\n"
         diag = LspDiag(

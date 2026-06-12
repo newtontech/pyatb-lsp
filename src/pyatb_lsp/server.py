@@ -13,9 +13,9 @@ Capabilities:
 
 from __future__ import annotations
 
-import json
 import logging
 from pathlib import Path
+from typing import Any
 
 from lsprotocol.types import (
     TEXT_DOCUMENT_CODE_ACTION,
@@ -203,9 +203,7 @@ def diagnose_document(uri: str, content: str) -> list[Diagnostic]:
 
     from pyatb_lsp.diagnostics import Diagnostic as AnalyzerDiag
 
-    tmp = tempfile.NamedTemporaryFile(
-        mode="w", suffix=".py", delete=False, encoding="utf-8"
-    )
+    tmp = tempfile.NamedTemporaryFile(mode="w", suffix=".py", delete=False, encoding="utf-8")
     tmp.write(content)
     path = Path(tmp.name)
     tmp.close()
@@ -267,8 +265,14 @@ def complete_keywords(prefix: str) -> list[CompletionItem]:
             kind = CompletionItemKind.Keyword
             if keyword in ("pyatb", "TightBinding", "TB"):
                 kind = CompletionItemKind.Class
-            elif keyword in ("hr_file", "sr_file", "output", "out_file",
-                             "output_path", "result_dir"):
+            elif keyword in (
+                "hr_file",
+                "sr_file",
+                "output",
+                "out_file",
+                "output_path",
+                "result_dir",
+            ):
                 kind = CompletionItemKind.Variable
             elif keyword in ("HR.dat", "SR.dat"):
                 kind = CompletionItemKind.File
@@ -336,9 +340,7 @@ def hover_info(content: str, line: int, column: int) -> str | None:
     return None
 
 
-def get_code_actions(
-    uri: str, content: str, diagnostics: list[Diagnostic]
-) -> list[CodeAction]:
+def get_code_actions(uri: str, content: str, diagnostics: list[Diagnostic]) -> list[CodeAction]:
     """Generate code actions for the given diagnostics (#21).
 
     Parameters
@@ -416,12 +418,8 @@ def get_code_actions(
                             uri: [
                                 TextEdit(
                                     range=Range(
-                                        start=Position(
-                                            line=insert_line, character=0
-                                        ),
-                                        end=Position(
-                                            line=insert_line, character=0
-                                        ),
+                                        start=Position(line=insert_line, character=0),
+                                        end=Position(line=insert_line, character=0),
                                     ),
                                     new_text=new_text,
                                 )
@@ -443,12 +441,8 @@ def get_code_actions(
                             uri: [
                                 TextEdit(
                                     range=Range(
-                                        start=Position(
-                                            line=len(lines), character=0
-                                        ),
-                                        end=Position(
-                                            line=len(lines), character=0
-                                        ),
+                                        start=Position(line=len(lines), character=0),
+                                        end=Position(line=len(lines), character=0),
                                     ),
                                     new_text='\noutput_path = "results/"\n',
                                 )
@@ -471,7 +465,7 @@ def get_code_actions(
     return actions
 
 
-def get_agent_json(uri: str, content: str) -> dict:
+def get_agent_json(uri: str, content: str) -> dict[str, Any]:
     """Build the agent-facing JSON payload for diagnostics (#11).
 
     Parameters
@@ -486,19 +480,12 @@ def get_agent_json(uri: str, content: str) -> dict:
     dict
         Agent JSON payload with diagnostics, metadata, and hover context.
     """
-    from pyatb_lsp.rich_diagnostics import agent_check_payload
-
-    diags = diagnose_document(uri, content)
-
-    # Convert LSP diagnostics back to serializable form
-    from pyatb_lsp.diagnostics import Diagnostic as AnalyzerDiag
-
     # Re-analyze to get analyzer diagnostics for rich serialization
     import tempfile
 
-    tmp = tempfile.NamedTemporaryFile(
-        mode="w", suffix=".py", delete=False, encoding="utf-8"
-    )
+    from pyatb_lsp.rich_diagnostics import agent_check_payload
+
+    tmp = tempfile.NamedTemporaryFile(mode="w", suffix=".py", delete=False, encoding="utf-8")
     tmp.write(content)
     path = Path(tmp.name)
     tmp.close()

@@ -9,6 +9,8 @@ import pytest
 from pyatb_lsp.cli import fmt_main, lint_main, log_main, lsp_main
 from pyatb_lsp.cli import test_main as pyatb_test_main
 
+VALID_CONTENT = 'import pyatb\nhr_file = "HR.dat"\nsr_file = "SR.dat"\noutput = "out"\n'
+
 
 def _write(tmp_path: Path, name: str, content: str) -> Path:
     p = tmp_path / name
@@ -18,7 +20,7 @@ def _write(tmp_path: Path, name: str, content: str) -> Path:
 
 class TestLintMain:
     def test_clean_file_returns_zero(self, tmp_path: Path, capsys):
-        p = _write(tmp_path, "ok.py", 'import pyatb\nhr_file = "HR.dat"\nsr_file = "SR.dat"\noutput = "out"\n')
+        p = _write(tmp_path, "ok.py", VALID_CONTENT)
         rc = lint_main([str(p)])
         assert rc == 0
 
@@ -90,7 +92,7 @@ class TestFmtMain:
 
 class TestTestMain:
     def test_static_subcommand(self, tmp_path: Path, capsys):
-        p = _write(tmp_path, "ok.py", 'import pyatb\nhr_file = "HR.dat"\nsr_file = "SR.dat"\noutput = "out"\n')
+        p = _write(tmp_path, "ok.py", VALID_CONTENT)
         rc = pyatb_test_main(["static", str(p)])
         assert rc == 0
 
@@ -135,7 +137,8 @@ class TestLogMain:
 
     def test_error_log_returns_one(self, tmp_path: Path, capsys):
         p = _write(
-            tmp_path, "error.log",
+            tmp_path,
+            "error.log",
             "Traceback (most recent call last):\n  File 'x'\nError: bad\n",
         )
         rc = log_main([str(p)])
@@ -143,7 +146,8 @@ class TestLogMain:
 
     def test_json_output(self, tmp_path: Path, capsys):
         p = _write(
-            tmp_path, "error.log",
+            tmp_path,
+            "error.log",
             "Error: something went wrong\n",
         )
         log_main([str(p), "--json"])
@@ -156,7 +160,8 @@ class TestLogMain:
 
     def test_text_output_format(self, tmp_path: Path, capsys):
         p = _write(
-            tmp_path, "error.log",
+            tmp_path,
+            "error.log",
             "Error: bad\n",
         )
         log_main([str(p)])
