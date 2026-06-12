@@ -60,6 +60,7 @@ def _operation_payload(
         character=character,
     )
 
+
 def _parse_log(path: Path) -> dict[str, Any]:
     """Parse a log file for runtime errors (#22)."""
     from .analyzer import parse_log_content
@@ -107,8 +108,14 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="pyatb-lsp-tool")
     subparsers = parser.add_subparsers(dest="operation", required=True)
     for operation in (
-        "check", "context", "complete", "hover", "symbols", "fix",
-        "parse-log", "agent-json",
+        "check",
+        "context",
+        "complete",
+        "hover",
+        "symbols",
+        "fix",
+        "parse-log",
+        "agent-json",
     ):
         sub = subparsers.add_parser(operation)
         sub.add_argument("path", type=Path)
@@ -129,7 +136,9 @@ def main(argv: list[str] | None = None) -> int:
             sub.add_argument("--fail-on-blocking", action="store_true")
         if operation == "parse-log":
             sub.add_argument(
-                "--log-file", type=Path, default=None,
+                "--log-file",
+                type=Path,
+                default=None,
                 help="Path to log file (defaults to <path>)",
             )
 
@@ -138,11 +147,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.operation == "check":
         payload = with_capabilities(check_path(args.path), "check")
         print(json.dumps(payload, indent=2, sort_keys=True))
-        return (
-            1
-            if getattr(args, "fail_on_blocking", False) and not payload["ok"]
-            else 0
-        )
+        return 1 if getattr(args, "fail_on_blocking", False) and not payload["ok"] else 0
 
     if args.operation == "parse-log":
         log_path = getattr(args, "log_file", None) or args.path

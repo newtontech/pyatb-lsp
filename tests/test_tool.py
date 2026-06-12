@@ -53,11 +53,7 @@ class TestToolParseLog:
         assert data["summary"]["count"] >= 1
 
     def test_parse_log_with_traceback(self, tmp_path: Path, capsys):
-        content = (
-            "Traceback (most recent call last):\n"
-            "  File 'x'\n"
-            "RuntimeError: fail\n"
-        )
+        content = "Traceback (most recent call last):\n  File 'x'\nRuntimeError: fail\n"
         p = _write(tmp_path, "traceback.log", content)
         rc = tool_main(["parse-log", str(p)])
         assert rc == 1

@@ -293,7 +293,8 @@ class TestRuleE071MissingImport:
 
     def test_from_import_satisfies_e071(self, tmp_path: Path):
         p = _write(
-            tmp_path, "ok.py",
+            tmp_path,
+            "ok.py",
             'from pyatb import TightBinding\nhr_file = "HR.dat"\n',
         )
         diag = analyze_file(p)
@@ -406,13 +407,13 @@ class TestRuleE074MissingStructure:
         assert not e074
 
     def test_with_tightbinding_no_e074(self, tmp_path: Path):
-        p = _write(tmp_path, "ok.py", 'import pyatb\ntb = pyatb.TightBinding()\n')
+        p = _write(tmp_path, "ok.py", "import pyatb\ntb = pyatb.TightBinding()\n")
         diag = analyze_file(p)
         e074 = [d for d in diag if d.code == "PYATB-E074"]
         assert not e074
 
     def test_with_tb_alias_no_e074(self, tmp_path: Path):
-        p = _write(tmp_path, "ok.py", 'import pyatb\ntb = pyatb.TB()\n')
+        p = _write(tmp_path, "ok.py", "import pyatb\ntb = pyatb.TB()\n")
         diag = analyze_file(p)
         e074 = [d for d in diag if d.code == "PYATB-E074"]
         assert not e074
@@ -443,7 +444,8 @@ class TestRuleW070MissingOutput:
 
     def test_no_output_emits_w070(self, tmp_path: Path):
         p = _write(
-            tmp_path, "no_out.py",
+            tmp_path,
+            "no_out.py",
             'import pyatb\nhr_file = "HR.dat"\nsr_file = "SR.dat"\n',
         )
         diag = analyze_file(p)
@@ -452,7 +454,8 @@ class TestRuleW070MissingOutput:
 
     def test_w070_is_warning(self, tmp_path: Path):
         p = _write(
-            tmp_path, "no_out.py",
+            tmp_path,
+            "no_out.py",
             'import pyatb\nhr_file = "HR.dat"\nsr_file = "SR.dat"\n',
         )
         diag = analyze_file(p)
@@ -462,7 +465,8 @@ class TestRuleW070MissingOutput:
 
     def test_with_output_no_w070(self, tmp_path: Path):
         p = _write(
-            tmp_path, "ok.py",
+            tmp_path,
+            "ok.py",
             'import pyatb\nhr_file = "HR.dat"\noutput = "results/"\n',
         )
         diag = analyze_file(p)
@@ -471,7 +475,8 @@ class TestRuleW070MissingOutput:
 
     def test_with_output_path_no_w070(self, tmp_path: Path):
         p = _write(
-            tmp_path, "ok.py",
+            tmp_path,
+            "ok.py",
             'import pyatb\nhr_file = "HR.dat"\noutput_path = "results/"\n',
         )
         diag = analyze_file(p)
@@ -480,7 +485,8 @@ class TestRuleW070MissingOutput:
 
     def test_with_result_dir_no_w070(self, tmp_path: Path):
         p = _write(
-            tmp_path, "ok.py",
+            tmp_path,
+            "ok.py",
             'import pyatb\nhr_file = "HR.dat"\nresult_dir = "/tmp/out"\n',
         )
         diag = analyze_file(p)
@@ -489,7 +495,8 @@ class TestRuleW070MissingOutput:
 
     def test_w070_has_suggested_fix(self, tmp_path: Path):
         p = _write(
-            tmp_path, "no_out.py",
+            tmp_path,
+            "no_out.py",
             'import pyatb\nhr_file = "HR.dat"\nsr_file = "SR.dat"\n',
         )
         diag = analyze_file(p)
@@ -522,21 +529,13 @@ class TestRuleE075Traceback:
     """PYATB-E075: Runtime log traceback detection."""
 
     def test_traceback_emits_e075_via_parse_log(self):
-        content = (
-            "Traceback (most recent call last):\n"
-            "  File 'x'\n"
-            "Error: bad\n"
-        )
+        content = "Traceback (most recent call last):\n  File 'x'\nError: bad\n"
         diags = parse_log_content(content)
         e075 = [d for d in diags if d.code == "PYATB-E075"]
         assert len(e075) >= 1
 
     def test_e075_is_error_severity(self):
-        content = (
-            "Traceback (most recent call last):\n"
-            "  File 'x'\n"
-            "Error: bad\n"
-        )
+        content = "Traceback (most recent call last):\n  File 'x'\nError: bad\n"
         diags = parse_log_content(content)
         e075 = [d for d in diags if d.code == "PYATB-E075"]
         assert all(d.severity == "error" for d in e075)
@@ -548,28 +547,18 @@ class TestRuleE075Traceback:
         assert not e075
 
     def test_traceback_reports_start_line(self):
-        content = (
-            "x = 1\n"
-            "Traceback (most recent call last):\n"
-            "  File 'x'\n"
-            "Error: bad\n"
-        )
+        content = "x = 1\nTraceback (most recent call last):\n  File 'x'\nError: bad\n"
         diags = parse_log_content(content)
         e075 = [d for d in diags if d.code == "PYATB-E075"]
         assert len(e075) >= 1
         assert e075[0].line == 2
 
     def test_unterminated_traceback(self):
-        content = (
-            "Traceback (most recent call last):\n"
-            "  File 'x'\n"
-            "  more\n"
-        )
+        content = "Traceback (most recent call last):\n  File 'x'\n  more\n"
         diags = parse_log_content(content)
         e075 = [d for d in diags if d.code == "PYATB-E075"]
         assert len(e075) == 1
         assert "unterminated" in e075[0].message
-
 
 
 class TestRuleE073InvalidJSON:
@@ -579,6 +568,7 @@ class TestRuleE073InvalidJSON:
         p = tmp_path / "bad.json"
         p.write_text("{invalid json}", encoding="utf-8")
         from pyatb_lsp.analyzer import _analyze_json_or_text
+
         diag = _analyze_json_or_text(p, "{invalid json}")
         codes = [d.code for d in diag]
         assert "PYATB-E073" in codes
@@ -587,6 +577,7 @@ class TestRuleE073InvalidJSON:
         p = tmp_path / "bad.json"
         p.write_text("{invalid}", encoding="utf-8")
         from pyatb_lsp.analyzer import _analyze_json_or_text
+
         diag = _analyze_json_or_text(p, "{invalid}")
         e073 = [d for d in diag if d.code == "PYATB-E073"]
         assert len(e073) == 1
@@ -596,6 +587,7 @@ class TestRuleE073InvalidJSON:
         p = tmp_path / "good.json"
         p.write_text('{"hr_file": "HR.dat"}', encoding="utf-8")
         from pyatb_lsp.analyzer import _analyze_json_or_text
+
         diag = _analyze_json_or_text(p, '{"hr_file": "HR.dat"}')
         e073 = [d for d in diag if d.code == "PYATB-E073"]
         assert not e073
@@ -604,6 +596,7 @@ class TestRuleE073InvalidJSON:
         p = tmp_path / "bad.json"
         content = '{\n  "key": "val",\n  bad_key\n}'
         from pyatb_lsp.analyzer import _analyze_json_or_text
+
         diag = _analyze_json_or_text(p, content)
         e073 = [d for d in diag if d.code == "PYATB-E073"]
         assert len(e073) == 1
@@ -612,6 +605,7 @@ class TestRuleE073InvalidJSON:
     def test_e073_has_fix_suggestion(self, tmp_path: Path):
         p = tmp_path / "bad.json"
         from pyatb_lsp.analyzer import _analyze_json_or_text
+
         diag = _analyze_json_or_text(p, "{invalid}")
         e073 = [d for d in diag if d.code == "PYATB-E073"]
         assert e073[0].suggested_fix is not None
@@ -855,9 +849,7 @@ class TestParseLogContent:
 
     def test_parse_traceback(self):
         content = (
-            "Traceback (most recent call last):\n"
-            "  File 'run.py', line 10\n"
-            "RuntimeError: bad\n"
+            "Traceback (most recent call last):\n  File 'run.py', line 10\nRuntimeError: bad\n"
         )
         diags = parse_log_content(content)
         e075 = [d for d in diags if d.code == "PYATB-E075"]
@@ -896,12 +888,7 @@ class TestParseLogContent:
         assert len(diags) == 0
 
     def test_multiple_errors(self):
-        content = (
-            "Traceback (most recent call last):\n"
-            "  File 'x'\n"
-            "Error: first\n"
-            "Error: second\n"
-        )
+        content = "Traceback (most recent call last):\n  File 'x'\nError: first\nError: second\n"
         diags = parse_log_content(content)
         assert len(diags) >= 2
 
@@ -936,12 +923,7 @@ class TestDetectTracebackPatterns:
         assert len(diags) == 0
 
     def test_single_traceback(self, tmp_path: Path):
-        content = (
-            "x = 1\n"
-            "Traceback (most recent call last):\n"
-            "  File 'x'\n"
-            "ValueError: bad\n"
-        )
+        content = "x = 1\nTraceback (most recent call last):\n  File 'x'\nValueError: bad\n"
         diags = _detect_traceback_patterns(tmp_path / "test.py", content)
         assert len(diags) == 1
         assert diags[0].code == "PYATB-E075"
