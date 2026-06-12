@@ -1,0 +1,95 @@
+{
+  "schema": "OpenQCLspCapabilities",
+  "version": 1,
+  "id": "pyatb-lsp",
+  "software": "pyatb",
+  "displayName": "PyATB",
+  "languageId": "pyatb",
+  "executable": "pyatb-lsp",
+  "defaultBranch": "main",
+  "filePatterns": [
+    "*.pyatb.py",
+    "run_pyatb.py"
+  ],
+  "maturity": "stable",
+  "blockingPolicy": {
+    "mode": "blocking",
+    "description": "Error diagnostics block run-gate and Bohrium submission until resolved."
+  },
+  "capabilities": [
+    "agent-envelope",
+    "agent-json-cli",
+    "blocking-gate",
+    "completion",
+    "context",
+    "diagnostic-engine-v1",
+    "diagnostics",
+    "fix-placeholder",
+    "fix-preview",
+    "hover",
+    "llm-wiki",
+    "manifest",
+    "openqc-context",
+    "output-log-diagnostics",
+    "rich-diagnostics",
+    "routing",
+    "source-provenance",
+    "symbols"
+  ],
+  "agentCli": {
+    "command": "pyatb-lsp-tool",
+    "operations": [
+      "capabilities",
+      "check",
+      "context",
+      "complete",
+      "hover",
+      "symbols",
+      "fix"
+    ],
+    "jsonFormat": true,
+    "failOnBlocking": true
+  },
+  "diagnosticSchema": "diagnostics/diagnostic-engine-v1.schema.json",
+  "wikiPaths": {
+    "plan": "docs/LLM-WIKI-PLAN.md",
+    "rawAssets": "raw/assets",
+    "entities": "wiki/entities",
+    "concepts": "wiki/concepts",
+    "synthesis": "wiki/synthesis",
+    "index": "index.md",
+    "log": "log.md"
+  },
+  "fixturePaths": {
+    "valid": [
+      "tests/fixtures/valid",
+      "test/fixtures/valid"
+    ],
+    "invalid": [
+      "tests/fixtures/invalid",
+      "test/fixtures/invalid"
+    ],
+    "logs": [
+      "tests/fixtures/logs",
+      "test/fixtures/logs"
+    ]
+  },
+  "outputLogPatterns": [
+    "pyatb.log",
+    "*.pyatb.log",
+    "*.pyatb.out"
+  ],
+  "openqc": {
+    "registryId": "pyatb-lsp",
+    "repoName": "pyatb-lsp",
+    "contextContract": "DSLAuthoringContext",
+    "diagnosticEnvelope": "DiagnosticEnvelope/v1"
+  },
+  "sourceProvenance": [
+    {
+      "kind": "official_docs",
+      "label": "PyATB documentation",
+      "url": "https://pyatb.github.io/pyatb/"
+    }
+  ]
+}
