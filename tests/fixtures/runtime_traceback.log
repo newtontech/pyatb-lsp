@@ -1,0 +1,8 @@
+Running PyATB calculation...
+Loading HR.dat
+Traceback (most recent call last):
+  File "run.py", line 10, in <module>
+    tb.run()
+  File "pyatb/core.py", line 45, in run
+    self._solve()
+RuntimeError: HR file format invalid

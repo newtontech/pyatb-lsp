@@ -1,11 +1,19 @@
 """PyATB Language Server Protocol implementation.
 
 Exposes PyATB workflow analysis as LSP features:
-diagnostics, formatting, completion, and hover documentation.
+diagnostics, formatting, completion, hover, and code actions.
+
+Capabilities:
+- Diagnostics (#13): Full diagnostic push on open/change
+- Hover (#7): Keyword catalog hover + Python builtin hover
+- Completion: PyATB keyword completion
+- Formatting (#5): Safe idempotent formatter
+- Code Actions (#21): Quick-fix actions for diagnostics
 """
 
 from __future__ import annotations
 
+import json
 import logging
 from pathlib import Path
 
@@ -16,6 +24,8 @@ from lsprotocol.types import (
     TEXT_DOCUMENT_DID_OPEN,
     TEXT_DOCUMENT_FORMATTING,
     TEXT_DOCUMENT_HOVER,
+    CodeAction,
+    CodeActionKind,
     CodeActionParams,
     CompletionItem,
     CompletionItemKind,
@@ -33,6 +43,8 @@ from lsprotocol.types import (
     Position,
     Range,
     TextDocumentSyncKind,
+    TextEdit,
+    WorkspaceEdit,
 )
 from pygls.server import LanguageServer
 
@@ -46,9 +58,6 @@ SERVER_VERSION = "0.1.0"
 # ---------------------------------------------------------------------------
 # Built-in keyword catalog for PyATB / materials-science workflow scripts
 # ---------------------------------------------------------------------------
-# These are keywords the LSP uses for completion and hover. The list covers
-# common PyATB API members, typical variable names, and file references seen
-# in MatMaster golden test cases.
 
 KEYWORD_CATALOG: dict[str, str] = {
     "import": "Python import statement",
@@ -84,6 +93,54 @@ KEYWORD_CATALOG: dict[str, str] = {
     "eigvals": "Eigenvalues from the calculation",
     "eigvecs": "Eigenvectors from the calculation",
     "weight": "Weights associated with eigenvalues / k-points",
+    # Additional MatMaster keywords (#8)
+    "output": "Output directory or file path for calculation results",
+    "out_file": "Output file path for writing results",
+    "output_path": "Explicit output directory path",
+    "result_dir": "Directory for storing calculation results",
+}
+
+# Hover documentation extensions for PyATB-specific symbols (#7)
+HOVER_DOCS: dict[str, str] = {
+    "TightBinding": (
+        "**TightBinding**  \n"
+        "PyATB core class for tight-binding calculations.  \n\n"
+        "```python\n"
+        "import pyatb\n"
+        "tb = pyatb.TightBinding(hr_file='HR.dat', sr_file='SR.dat')\n"
+        "```\n\n"
+        "Requires `hr_file` (Hamiltonian) and optionally `sr_file` (overlap)."
+    ),
+    "hr_file": (
+        "**hr_file**  \n"
+        "Path to the Hamiltonian real-space file (HR.dat).  \n\n"
+        "Required for all tight-binding calculations in PyATB."
+    ),
+    "sr_file": (
+        "**sr_file**  \n"
+        "Path to the overlap real-space file (SR.dat).  \n\n"
+        "Optional but recommended for accurate tight-binding calculations."
+    ),
+    "kmesh": (
+        "**kmesh**  \n"
+        "Monkhorst-Pack k-point mesh specification.  \n\n"
+        "Controls the Brillouin zone sampling density."
+    ),
+    "conductivity": (
+        "**conductivity**  \n"
+        "Optical or DC conductivity calculation module.  \n\n"
+        "Computes transport properties from the electronic structure."
+    ),
+    "dos": (
+        "**dos**  \n"
+        "Density of states calculation module.  \n\n"
+        "Computes the electronic density of states."
+    ),
+    "band": (
+        "**band**  \n"
+        "Band structure calculation module.  \n\n"
+        "Computes energy eigenvalues along k-point paths."
+    ),
 }
 
 
@@ -93,7 +150,10 @@ def _ls_diagnostic_from_analyzer(diag: object, uri: str) -> Diagnostic:
 
     if not isinstance(diag, AnalyzerDiag):
         return Diagnostic(
-            range=Range(start=Position(line=0, character=0), end=Position(line=0, character=0)),
+            range=Range(
+                start=Position(line=0, character=0),
+                end=Position(line=0, character=0),
+            ),
             message=str(diag),
             severity=DiagnosticSeverity.Error,
         )
@@ -103,6 +163,7 @@ def _ls_diagnostic_from_analyzer(diag: object, uri: str) -> Diagnostic:
         "warning": DiagnosticSeverity.Warning,
         "info": DiagnosticSeverity.Information,
         "hint": DiagnosticSeverity.Hint,
+        "information": DiagnosticSeverity.Information,
     }
     line = max(diag.line - 1, 0)
     col = max(diag.column - 1, 0)
@@ -138,12 +199,13 @@ def diagnose_document(uri: str, content: str) -> list[Diagnostic]:
     list[Diagnostic]
         Zero or more LSP Diagnostic objects.
     """
-    # Write content to a temp file for analysis (analyze_file reads from disk).
     import tempfile
 
     from pyatb_lsp.diagnostics import Diagnostic as AnalyzerDiag
 
-    tmp = tempfile.NamedTemporaryFile(mode="w", suffix=".py", delete=False, encoding="utf-8")
+    tmp = tempfile.NamedTemporaryFile(
+        mode="w", suffix=".py", delete=False, encoding="utf-8"
+    )
     tmp.write(content)
     path = Path(tmp.name)
     tmp.close()
@@ -153,11 +215,8 @@ def diagnose_document(uri: str, content: str) -> list[Diagnostic]:
     finally:
         path.unlink(missing_ok=True)
 
-    # Some analyzer diagnostics come from domain-wide checks that should also
-    # apply here (e.g. missing HR.dat reference).
     all_diags = list(analyzer_diags)
 
-    # Add custom checks for zero-length content
     if not content.strip():
         all_diags.append(
             AnalyzerDiag(
@@ -173,7 +232,7 @@ def diagnose_document(uri: str, content: str) -> list[Diagnostic]:
 
 
 def format_document(content: str) -> str:
-    """Format PyATB document text using the analyzer's formatter.
+    """Format PyATB document text using the analyzer's safe formatter.
 
     Parameters
     ----------
@@ -183,7 +242,7 @@ def format_document(content: str) -> str:
     Returns
     -------
     str
-        Formatted text.
+        Formatted text (idempotent).
     """
     return format_text(content)
 
@@ -205,11 +264,11 @@ def complete_keywords(prefix: str) -> list[CompletionItem]:
     items: list[CompletionItem] = []
     for keyword in KEYWORD_CATALOG:
         if keyword.lower().startswith(lower):
-            # Determine completion kind
             kind = CompletionItemKind.Keyword
             if keyword in ("pyatb", "TightBinding", "TB"):
                 kind = CompletionItemKind.Class
-            elif keyword in ("hr_file", "sr_file"):
+            elif keyword in ("hr_file", "sr_file", "output", "out_file",
+                             "output_path", "result_dir"):
                 kind = CompletionItemKind.Variable
             elif keyword in ("HR.dat", "SR.dat"):
                 kind = CompletionItemKind.File
@@ -260,6 +319,10 @@ def hover_info(content: str, line: int, column: int) -> str | None:
 
     word = line_text[start:end]
 
+    # Check extended hover docs first (#7)
+    if word in HOVER_DOCS:
+        return HOVER_DOCS[word]
+
     # Look up in the keyword catalog
     if word in KEYWORD_CATALOG:
         return f"**{word}**  \n{KEYWORD_CATALOG[word]}"
@@ -273,13 +336,211 @@ def hover_info(content: str, line: int, column: int) -> str | None:
     return None
 
 
-def create_server() -> PyATBServer:
-    """Create and return a :class:`PyATBServer` instance.
+def get_code_actions(
+    uri: str, content: str, diagnostics: list[Diagnostic]
+) -> list[CodeAction]:
+    """Generate code actions for the given diagnostics (#21).
 
-    The server is pre-configured with the registered LSP features
-    but is **not** started. Call ``start_io()`` or ``start_tcp()``
-    to begin listening.
+    Parameters
+    ----------
+    uri
+        Document URI.
+    content
+        Full document text.
+    diagnostics
+        LSP diagnostics for which to generate actions.
+
+    Returns
+    -------
+    list[CodeAction]
+        Available quick-fix actions.
     """
+    actions: list[CodeAction] = []
+    lines = content.splitlines()
+
+    for diag in diagnostics:
+        code = str(diag.code) if diag.code else ""
+
+        # PYATB-E071: Add missing import
+        if "E071" in code or code == "PYATB101":
+            actions.append(
+                CodeAction(
+                    title="Add 'import pyatb'",
+                    kind=CodeActionKind.QuickFix,
+                    diagnostics=[diag],
+                    edit=WorkspaceEdit(
+                        changes={
+                            uri: [
+                                TextEdit(
+                                    range=Range(
+                                        start=Position(line=0, character=0),
+                                        end=Position(line=0, character=0),
+                                    ),
+                                    new_text="import pyatb\n",
+                                )
+                            ]
+                        }
+                    ),
+                )
+            )
+
+        # PYATB-E072 / PYATB-E074: Add missing symbol/structure reference
+        if "E072" in code or "E074" in code or code == "PYATB102":
+            # Determine which symbol is missing
+            msg = diag.message or ""
+            if "HR.dat" in msg or "hr_file" in msg or "structure" in msg:
+                new_text = 'hr_file = "HR.dat"\n'
+                title = 'Add hr_file = "HR.dat"'
+            else:
+                new_text = 'sr_file = "SR.dat"\n'
+                title = 'Add sr_file = "SR.dat"'
+
+            # Find insertion point (after imports or at top)
+            insert_line = 0
+            for i, ln in enumerate(lines):
+                stripped = ln.strip()
+                if stripped.startswith(("import ", "from ")):
+                    insert_line = i + 1
+                elif stripped.startswith("#") or not stripped:
+                    continue
+                else:
+                    break
+
+            actions.append(
+                CodeAction(
+                    title=title,
+                    kind=CodeActionKind.QuickFix,
+                    diagnostics=[diag],
+                    edit=WorkspaceEdit(
+                        changes={
+                            uri: [
+                                TextEdit(
+                                    range=Range(
+                                        start=Position(
+                                            line=insert_line, character=0
+                                        ),
+                                        end=Position(
+                                            line=insert_line, character=0
+                                        ),
+                                    ),
+                                    new_text=new_text,
+                                )
+                            ]
+                        }
+                    ),
+                )
+            )
+
+        # PYATB-W070: Add output path
+        if "W070" in code:
+            actions.append(
+                CodeAction(
+                    title='Add output_path = "results/"',
+                    kind=CodeActionKind.QuickFix,
+                    diagnostics=[diag],
+                    edit=WorkspaceEdit(
+                        changes={
+                            uri: [
+                                TextEdit(
+                                    range=Range(
+                                        start=Position(
+                                            line=len(lines), character=0
+                                        ),
+                                        end=Position(
+                                            line=len(lines), character=0
+                                        ),
+                                    ),
+                                    new_text='\noutput_path = "results/"\n',
+                                )
+                            ]
+                        }
+                    ),
+                )
+            )
+
+        # PYATB-E070: Fix syntax (generic guidance)
+        if "E070" in code or code == "PYATB001":
+            actions.append(
+                CodeAction(
+                    title="Show syntax error details",
+                    kind=CodeActionKind.QuickFix,
+                    diagnostics=[diag],
+                )
+            )
+
+    return actions
+
+
+def get_agent_json(uri: str, content: str) -> dict:
+    """Build the agent-facing JSON payload for diagnostics (#11).
+
+    Parameters
+    ----------
+    uri
+        The document URI.
+    content
+        The full document text.
+
+    Returns
+    -------
+    dict
+        Agent JSON payload with diagnostics, metadata, and hover context.
+    """
+    from pyatb_lsp.rich_diagnostics import agent_check_payload
+
+    diags = diagnose_document(uri, content)
+
+    # Convert LSP diagnostics back to serializable form
+    from pyatb_lsp.diagnostics import Diagnostic as AnalyzerDiag
+
+    # Re-analyze to get analyzer diagnostics for rich serialization
+    import tempfile
+
+    tmp = tempfile.NamedTemporaryFile(
+        mode="w", suffix=".py", delete=False, encoding="utf-8"
+    )
+    tmp.write(content)
+    path = Path(tmp.name)
+    tmp.close()
+
+    try:
+        analyzer_diags = analyze_file(path)
+    finally:
+        path.unlink(missing_ok=True)
+
+    payload = agent_check_payload(
+        software="pyatb",
+        uri=uri,
+        operation="check",
+        diagnostics=analyzer_diags,
+        path=uri,
+        file_type="py",
+    )
+
+    # Add capability metadata (#11)
+    payload["capabilities"] = {
+        "hover": True,
+        "completion": True,
+        "formatting": True,
+        "code_actions": True,
+        "diagnostics": True,
+        "log_parser": True,
+    }
+    payload["rule_codes"] = {
+        "PYATB-E070": "Python syntax errors",
+        "PYATB-E071": "Missing required imports",
+        "PYATB-E072": "Missing required symbols",
+        "PYATB-E073": "Invalid JSON in configuration",
+        "PYATB-E074": "Missing structure reference",
+        "PYATB-W070": "Missing output path",
+        "PYATB-E075": "Runtime log traceback",
+    }
+
+    return payload
+
+
+def create_server() -> PyATBServer:
+    """Create and return a :class:`PyATBServer` instance."""
     return PyATBServer()
 
 
@@ -302,9 +563,6 @@ class PyATBServer(LanguageServer):
             text_document_sync_kind=TextDocumentSyncKind.Full,
         )
 
-        # Register LSP features via the instance decorator.
-        # Access unbound functions through the class dict to avoid
-        # .__func__ access on bound methods, which mypy rejects.
         self.feature(TEXT_DOCUMENT_DID_OPEN)(PyATBServer.did_open)
         self.feature(TEXT_DOCUMENT_DID_CHANGE)(PyATBServer.did_change)
         self.feature(TEXT_DOCUMENT_COMPLETION)(PyATBServer.completion)
@@ -369,7 +627,7 @@ class PyATBServer(LanguageServer):
             return None
 
     def formatting(self, params: DocumentFormattingParams) -> list[dict[str, object]]:
-        """Format the document using the PyATB formatter."""
+        """Format the document using the PyATB safe formatter."""
         try:
             document = self.workspace.get_text_document(params.text_document.uri)
             content = document.source
@@ -392,9 +650,13 @@ class PyATBServer(LanguageServer):
             }
         ]
 
-    def code_action(self, params: CodeActionParams) -> list[object]:
-        """Provide code actions for PyATB diagnostics.
+    def code_action(self, params: CodeActionParams) -> list[CodeAction]:
+        """Provide code actions for PyATB diagnostics (#21)."""
+        try:
+            document = self.workspace.get_text_document(params.text_document.uri)
+            content = document.source
+            uri = params.text_document.uri
+        except Exception:
+            return []
 
-        Currently a placeholder; returns an empty list.
-        """
-        return []
+        return get_code_actions(uri, content, params.context.diagnostics)

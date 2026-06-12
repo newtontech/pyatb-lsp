@@ -1,0 +1,6 @@
+{
+    "hr_file": "HR.dat",
+    "sr_file": "SR.dat",
+    "output": "results/",
+    invalid_key: missing quotes
+}

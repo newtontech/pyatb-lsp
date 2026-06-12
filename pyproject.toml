@@ -47,6 +47,7 @@ pyatb-lint = "pyatb_lsp.cli:lint_main"
 pyatb-fmt = "pyatb_lsp.cli:fmt_main"
 pyatb-test = "pyatb_lsp.cli:test_main"
 pyatb-lsp-tool = "pyatb_lsp.tool:main"
+pyatb-log = "pyatb_lsp.cli:log_main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/pyatb_lsp"]
