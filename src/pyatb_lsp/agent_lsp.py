@@ -12,8 +12,8 @@ from typing import Any
 from urllib.parse import urlparse
 
 from .analyzer import parse_log_content
-from .rich_diagnostics import agent_check_payload
 from .agent_operations import operation_path, with_capabilities
+from .rich_diagnostics import agent_check_payload
 from .tool import SOFTWARE, _collect_diagnostics, _file_type, check_path
 
 

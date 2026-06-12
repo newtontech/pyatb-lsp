@@ -82,15 +82,19 @@ class TestToolAgentJSON:
         assert "PYATB-E070" in data["rule_codes"]
 
 
-class TestToolReserved:
-    def test_context_reserved(self, tmp_path: Path, capsys):
+class TestToolAgentOperations:
+    def test_context_operation(self, tmp_path: Path, capsys):
         p = _write(tmp_path, "ok.py", "x = 1\n")
         rc = tool_main(["context", str(p)])
         assert rc == 0
         data = json.loads(capsys.readouterr().out)
-        assert "reserved" in data["summary"]["note"]
+        assert data["operation"] == "context"
+        assert data["capabilities"]["operation"] == "context"
 
-    def test_hover_reserved(self, tmp_path: Path, capsys):
+    def test_hover_operation(self, tmp_path: Path, capsys):
         p = _write(tmp_path, "ok.py", "x = 1\n")
         rc = tool_main(["hover", str(p)])
         assert rc == 0
+        data = json.loads(capsys.readouterr().out)
+        assert data["operation"] == "hover"
+        assert data["capabilities"]["operation"] == "hover"
