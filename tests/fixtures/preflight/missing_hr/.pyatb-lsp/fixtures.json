@@ -1,0 +1,8 @@
+[
+  {
+    "name": "missing_hr",
+    "expects_codes": ["PYATB602"],
+    "expects_blocking": true,
+    "summary": "pyatb workflow references HR.dat that is not in the workspace"
+  }
+]

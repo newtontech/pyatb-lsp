@@ -1,0 +1,8 @@
+[
+  {
+    "name": "valid_boltzmann",
+    "expects_codes": [],
+    "expects_blocking": false,
+    "summary": "clean pyatb boltzmann-transport workflow; all cross-file artifacts present"
+  }
+]

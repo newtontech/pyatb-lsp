@@ -1,0 +1,8 @@
+[
+  {
+    "name": "missing_config",
+    "expects_codes": ["PYATB601"],
+    "expects_blocking": true,
+    "summary": "workflow references config.json that is not present"
+  }
+]

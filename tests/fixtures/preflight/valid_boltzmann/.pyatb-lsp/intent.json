@@ -1,0 +1,5 @@
+{
+  "software_version": "pyatb >=1.3.3",
+  "runtime_image": "registry.example.com/pyatb:1.3.3",
+  "schema_source": "pyatb-lsp builtin"
+}

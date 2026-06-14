@@ -1,0 +1,8 @@
+[
+  {
+    "name": "coarse_kmesh",
+    "expects_codes": ["PYATB606"],
+    "expects_blocking": false,
+    "summary": "boltzmann kmesh=[1,1,1] has a 1-point axis; runtime-risk warning"
+  }
+]

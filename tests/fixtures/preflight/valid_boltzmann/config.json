@@ -1,0 +1,5 @@
+{
+  "task": "boltzmann_transport",
+  "tf_type": "boltzmann",
+  "boltz_params": {"emax": 2.0, "emin": -2.0}
+}
