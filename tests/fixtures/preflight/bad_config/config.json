@@ -1,0 +1,6 @@
+{
+  "task": "boltzmann_transport",
+  "boltz_params": {"emax": 2.0, "emin": -2.0}
+  // trailing comma + JS-style comment make this invalid JSON:
+  ,
+}

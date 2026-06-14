@@ -1,0 +1,8 @@
+[
+  {
+    "name": "ntype_keyword_mismatch",
+    "expects_codes": ["PYATB608"],
+    "expects_blocking": true,
+    "summary": "calculation='boltz_traj' without the required mu/kmesh kwargs"
+  }
+]

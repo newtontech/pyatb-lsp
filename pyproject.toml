@@ -59,7 +59,12 @@ pythonpath = ["src"]
 [tool.ruff]
 line-length = 100
 target-version = "py39"
-exclude = ["tests/fixtures/syntax_error.py"]
+exclude = [
+    "tests/fixtures/syntax_error.py",
+    # Preflight fixtures are test data that deliberately exercise varied /
+    # intentionally-malformed workflow shapes; they are not source to lint.
+    "tests/fixtures/preflight",
+]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP"]
