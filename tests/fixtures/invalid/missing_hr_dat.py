@@ -1,4 +1,4 @@
-"""Invalid PyATB script - missing HR.dat reference."""
+"""Invalid PyATB script - missing tight-binding data file."""
 
 import pyatb
 

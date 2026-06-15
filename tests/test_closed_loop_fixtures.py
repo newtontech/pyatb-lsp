@@ -298,3 +298,136 @@ class TestBlockingPolicy:
             tmp_path, INVALID_DIR / "missing_import.py", fail_on_blocking=True
         )
         assert payload["ok"] is False
+
+
+# ---------------------------------------------------------------------------
+# Fix-preview tests (#40)
+# ---------------------------------------------------------------------------
+
+
+def _run_fix(path: Path) -> dict:
+    """Run pyatb-lsp-tool fix and return parsed JSON."""
+    import io
+    import sys
+
+    old_stdout = sys.stdout
+    sys.stdout = buffer = io.StringIO()
+    try:
+        tool_main(["fix", str(path)])
+    finally:
+        sys.stdout = old_stdout
+    return json.loads(buffer.getvalue())
+
+
+def _run_fix_isolated(tmp_path: Path, fixture_path: Path) -> dict:
+    """Copy fixture to isolated tmp_path, then run fix."""
+    dest = tmp_path / fixture_path.name
+    shutil.copy2(fixture_path, dest)
+    return _run_fix(dest)
+
+
+class TestFixOperation:
+    """Tests for the fix operation with fix-preview envelopes (#40)."""
+
+    def test_fix_returns_envelope_v1(self, tmp_path: Path):
+        payload = _run_fix_isolated(tmp_path, INVALID_DIR / "missing_import.py")
+        _assert_envelope_v1(payload)
+        assert payload["operation"] == "fix"
+
+    def test_fix_valid_file_has_no_error_fix_previews(self, tmp_path: Path):
+        payload = _run_fix_isolated(tmp_path, VALID_DIR / "minimal_valid.py")
+        _assert_envelope_v1(payload)
+        assert payload["ok"] is True
+        for diag in payload["diagnostics"]:
+            if diag["severity"] == "error":
+                assert "fix_preview" not in diag
+
+    def test_fix_missing_import_has_add_import_preview(self, tmp_path: Path):
+        payload = _run_fix_isolated(tmp_path, INVALID_DIR / "missing_import.py")
+        _assert_envelope_v1(payload)
+        codes = {d["code"] for d in payload["diagnostics"]}
+        assert "PYATB-E071" in codes
+        e071 = [d for d in payload["diagnostics"] if d["code"] == "PYATB-E071"][0]
+        assert "fix_preview" in e071
+        preview = e071["fix_preview"]
+        assert preview["kind"] == "quickfix"
+        assert preview["diagnostic_code"] == "PYATB-E071"
+        assert preview["safe_to_auto_apply"] is True
+        assert "edit" in preview
+        assert "changes" in preview["edit"]
+        assert len(preview["edit"]["changes"]) > 0
+
+    def test_fix_missing_hr_dat_has_add_symbol_reference_preview(self, tmp_path: Path):
+        payload = _run_fix_isolated(tmp_path, INVALID_DIR / "missing_hr_dat.py")
+        _assert_envelope_v1(payload)
+        codes = {d["code"] for d in payload["diagnostics"]}
+        assert "PYATB-E072" in codes
+        e072 = [d for d in payload["diagnostics"] if d["code"] == "PYATB-E072"][0]
+        assert "fix_preview" in e072
+        preview = e072["fix_preview"]
+        assert preview["kind"] == "quickfix"
+        assert preview["diagnostic_code"] == "PYATB-E072"
+        assert preview["safe_to_auto_apply"] is False
+        assert "edit" in preview
+
+    def test_fix_missing_structure_ref_has_add_symbol_reference_preview(self, tmp_path: Path):
+        payload = _run_fix_isolated(tmp_path, INVALID_DIR / "missing_structure_ref.py")
+        _assert_envelope_v1(payload)
+        codes = {d["code"] for d in payload["diagnostics"]}
+        assert "PYATB-E072" in codes
+        e072 = [d for d in payload["diagnostics"] if d["code"] == "PYATB-E072"][0]
+        assert "fix_preview" in e072
+        preview = e072["fix_preview"]
+        assert preview["kind"] == "quickfix"
+        assert preview["diagnostic_code"] == "PYATB-E072"
+        assert preview["safe_to_auto_apply"] is False
+
+    def test_fix_no_output_path_has_add_output_path_preview(self, tmp_path: Path):
+        payload = _run_fix_isolated(tmp_path, INVALID_DIR / "no_output_path.py")
+        _assert_envelope_v1(payload)
+        codes = {d["code"] for d in payload["diagnostics"]}
+        assert "PYATB-W070" in codes
+        w070 = [d for d in payload["diagnostics"] if d["code"] == "PYATB-W070"][0]
+        assert "fix_preview" in w070
+        preview = w070["fix_preview"]
+        assert preview["kind"] == "quickfix"
+        assert preview["safe_to_auto_apply"] is True
+
+    def test_fix_syntax_error_returns_no_auto_fix(self, tmp_path: Path):
+        payload = _run_fix_isolated(tmp_path, INVALID_DIR / "syntax_error.py")
+        _assert_envelope_v1(payload)
+        codes = {d["code"] for d in payload["diagnostics"]}
+        assert "PYATB-E070" in codes
+        e070 = [d for d in payload["diagnostics"] if d["code"] == "PYATB-E070"][0]
+        assert "fix_preview" in e070
+        preview = e070["fix_preview"]
+        assert preview["safe_to_auto_apply"] is False
+        assert preview["edit"] is None
+
+    def test_fix_summary_fields_present(self, tmp_path: Path):
+        payload = _run_fix_isolated(tmp_path, INVALID_DIR / "missing_import.py")
+        _assert_envelope_v1(payload)
+        summary = payload["summary"]
+        assert "count" in summary
+        assert "blocking" in summary
+        assert "errors" in summary
+        assert "warnings" in summary
+        assert isinstance(summary["count"], int)
+        assert isinstance(summary["blocking"], int)
+        assert summary["count"] > 0
+
+    def test_fix_valid_file_ok_is_true(self, tmp_path: Path):
+        payload = _run_fix_isolated(tmp_path, VALID_DIR / "minimal_valid.py")
+        assert payload["ok"] is True
+
+    def test_fix_invalid_file_ok_is_false(self, tmp_path: Path):
+        payload = _run_fix_isolated(tmp_path, INVALID_DIR / "missing_import.py")
+        assert payload["ok"] is False
+
+    def test_fix_preview_has_required_fields(self, tmp_path: Path):
+        payload = _run_fix_isolated(tmp_path, INVALID_DIR / "missing_import.py")
+        e071 = [d for d in payload["diagnostics"] if d["code"] == "PYATB-E071"][0]
+        preview = e071["fix_preview"]
+        required = ["title", "kind", "diagnostic_code", "confidence", "safe_to_auto_apply"]
+        for field in required:
+            assert field in preview, f"Missing '{field}' in fix_preview"

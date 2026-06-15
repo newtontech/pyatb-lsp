@@ -276,6 +276,56 @@ def _parse_log(path: Path) -> dict[str, Any]:
     )
 
 
+def _fix_path(path: Path) -> dict[str, Any]:
+    """Generate fix previews for diagnostics on the given path (#40).
+
+    Returns a DiagnosticEnvelope/v1 payload with ``fix_preview`` entries
+    attached to each diagnostic that has a suggested_fix.  Safe-to-apply
+    fixes are flagged so agents can auto-apply them.
+    """
+    from .fix_preview import generate_fix_preview
+    from .rich_diagnostics import serialize_diagnostics
+
+    try:
+        content = path.read_text(encoding="utf-8")
+    except (UnicodeDecodeError, FileNotFoundError):
+        content = ""
+
+    diagnostics = _collect_diagnostics(path)
+
+    # Use the rich diagnostics serializer for envelope v1 compliance.
+    serialized = serialize_diagnostics(
+        diagnostics, software=SOFTWARE, path=str(path), file_type=_file_type(path)
+    )
+
+    # Attach fix previews to each serialized diagnostic.
+    for item in serialized:
+        suggested_fix = item.get("fix_hints", [None])[0] if item.get("fix_hints") else None
+        fix_preview = generate_fix_preview(path, content, item["code"], suggested_fix)
+        if fix_preview is not None:
+            item["fix_preview"] = fix_preview
+
+    blocking_count = sum(1 for item in serialized if item["blocking"])
+    return {
+        "uri": path.resolve().as_uri(),
+        "operation": "fix",
+        "ok": blocking_count == 0,
+        "version": "1.0",
+        "software": SOFTWARE,
+        "diagnostic_engine": "1.0",
+        "diagnostic_envelope": "v1",
+        "path": str(path),
+        "file_type": _file_type(path),
+        "diagnostics": serialized,
+        "summary": {
+            "count": len(serialized),
+            "blocking": blocking_count,
+            "errors": sum(1 for item in serialized if item["severity"] == "error"),
+            "warnings": sum(1 for item in serialized if item["severity"] == "warning"),
+        },
+    }
+
+
 def _agent_json(path: Path) -> dict[str, Any]:
     """Build the full agent JSON payload (#11)."""
     payload = check_path(path)
@@ -382,6 +432,11 @@ def main(argv: list[str] | None = None) -> int:
         payload = _agent_json(args.path)
         print(json.dumps(payload, indent=2, sort_keys=True))
         return 0
+
+    if args.operation == "fix":
+        payload = with_capabilities(_fix_path(args.path), "fix")
+        print(json.dumps(payload, indent=2, sort_keys=True))
+        return 1 if not payload["ok"] else 0
 
     payload = _operation_payload(args.path, args.operation, args.line, args.character)
     print(json.dumps(payload, indent=2, sort_keys=True))
