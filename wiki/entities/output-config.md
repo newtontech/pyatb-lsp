@@ -57,3 +57,7 @@ output_path = "results/"
 
 - [TightBinding Class](tightbinding.md)
 - [Diagnostic Codes](../synthesis/diagnostic-codes.md)
+
+## Traceability Sources
+
+- Raw evidence: `raw/assets/source-provenance.json`

@@ -1,0 +1,1675 @@
+{
+  "schemaVersion": "openqc.lsp.traceability.v1",
+  "serverId": "pyatb-lsp",
+  "languageId": "pyatb",
+  "generatedAt": "2026-06-15T19:27:06+00:00",
+  "repository": "newtontech/pyatb-lsp",
+  "summary": {
+    "docstringsTotal": 84,
+    "docstringsLinked": 84,
+    "brokenWikiLinks": 0,
+    "wikiPagesTotal": 29,
+    "wikiPagesWithRaw": 29,
+    "wikiSourcesWithoutRaw": 0,
+    "rawManifestFailures": 0
+  },
+  "docstrings": [
+    {
+      "path": "scripts/check_docstring_traceability.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:scripts/check_docstring_traceability.py:2",
+      "file": "scripts/check_docstring_traceability.py",
+      "line": 2,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "scripts/update_official_pipeline.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:scripts/update_official_pipeline.py:2",
+      "file": "scripts/update_official_pipeline.py",
+      "line": 2,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/__init__.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/__init__.py:1",
+      "file": "src/pyatb_lsp/__init__.py",
+      "line": 1,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/agent_lsp.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/agent_lsp.py:1",
+      "file": "src/pyatb_lsp/agent_lsp.py",
+      "line": 1,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/agent_lsp.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/agent_lsp.py:23",
+      "file": "src/pyatb_lsp/agent_lsp.py",
+      "line": 23,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/agent_lsp.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/agent_lsp.py:93",
+      "file": "src/pyatb_lsp/agent_lsp.py",
+      "line": 93,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/agent_lsp.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/agent_lsp.py:123",
+      "file": "src/pyatb_lsp/agent_lsp.py",
+      "line": 123,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/agent_operations.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/agent_operations.py:1",
+      "file": "src/pyatb_lsp/agent_operations.py",
+      "line": 1,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/agent_operations.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/agent_operations.py:35",
+      "file": "src/pyatb_lsp/agent_operations.py",
+      "line": 35,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/agent_operations.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/agent_operations.py:61",
+      "file": "src/pyatb_lsp/agent_operations.py",
+      "line": 61,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/analyzer.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/analyzer.py:1",
+      "file": "src/pyatb_lsp/analyzer.py",
+      "line": 1,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/analyzer.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/analyzer.py:436",
+      "file": "src/pyatb_lsp/analyzer.py",
+      "line": 436,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/analyzer.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/analyzer.py:487",
+      "file": "src/pyatb_lsp/analyzer.py",
+      "line": 487,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/analyzer.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/analyzer.py:641",
+      "file": "src/pyatb_lsp/analyzer.py",
+      "line": 641,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/analyzer.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/analyzer.py:652",
+      "file": "src/pyatb_lsp/analyzer.py",
+      "line": 652,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/cli.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/cli.py:55",
+      "file": "src/pyatb_lsp/cli.py",
+      "line": 55,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/fix_preview.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/fix_preview.py:1",
+      "file": "src/pyatb_lsp/fix_preview.py",
+      "line": 1,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/fix_preview.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/fix_preview.py:30",
+      "file": "src/pyatb_lsp/fix_preview.py",
+      "line": 30,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/fix_preview.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/fix_preview.py:90",
+      "file": "src/pyatb_lsp/fix_preview.py",
+      "line": 90,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/fix_preview.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/fix_preview.py:136",
+      "file": "src/pyatb_lsp/fix_preview.py",
+      "line": 136,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/fix_preview.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/fix_preview.py:191",
+      "file": "src/pyatb_lsp/fix_preview.py",
+      "line": 191,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/fix_preview.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/fix_preview.py:237",
+      "file": "src/pyatb_lsp/fix_preview.py",
+      "line": 237,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/fix_preview.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/fix_preview.py:274",
+      "file": "src/pyatb_lsp/fix_preview.py",
+      "line": 274,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/fix_preview.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/fix_preview.py:292",
+      "file": "src/pyatb_lsp/fix_preview.py",
+      "line": 292,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/fix_preview.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/fix_preview.py:310",
+      "file": "src/pyatb_lsp/fix_preview.py",
+      "line": 310,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/fix_preview.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/fix_preview.py:350",
+      "file": "src/pyatb_lsp/fix_preview.py",
+      "line": 350,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/fix_preview.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/fix_preview.py:391",
+      "file": "src/pyatb_lsp/fix_preview.py",
+      "line": 391,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/fix_preview.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/fix_preview.py:447",
+      "file": "src/pyatb_lsp/fix_preview.py",
+      "line": 447,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/preflight.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/preflight.py:1",
+      "file": "src/pyatb_lsp/preflight.py",
+      "line": 1,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/preflight.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/preflight.py:160",
+      "file": "src/pyatb_lsp/preflight.py",
+      "line": 160,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/preflight.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/preflight.py:180",
+      "file": "src/pyatb_lsp/preflight.py",
+      "line": 180,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/preflight.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/preflight.py:221",
+      "file": "src/pyatb_lsp/preflight.py",
+      "line": 221,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/preflight.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/preflight.py:241",
+      "file": "src/pyatb_lsp/preflight.py",
+      "line": 241,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/preflight.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/preflight.py:298",
+      "file": "src/pyatb_lsp/preflight.py",
+      "line": 298,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/preflight.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/preflight.py:320",
+      "file": "src/pyatb_lsp/preflight.py",
+      "line": 320,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/preflight.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/preflight.py:359",
+      "file": "src/pyatb_lsp/preflight.py",
+      "line": 359,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/preflight.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/preflight.py:389",
+      "file": "src/pyatb_lsp/preflight.py",
+      "line": 389,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/preflight.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/preflight.py:457",
+      "file": "src/pyatb_lsp/preflight.py",
+      "line": 457,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/preflight.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/preflight.py:493",
+      "file": "src/pyatb_lsp/preflight.py",
+      "line": 493,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/preflight.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/preflight.py:568",
+      "file": "src/pyatb_lsp/preflight.py",
+      "line": 568,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/preflight.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/preflight.py:611",
+      "file": "src/pyatb_lsp/preflight.py",
+      "line": 611,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/preflight.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/preflight.py:896",
+      "file": "src/pyatb_lsp/preflight.py",
+      "line": 896,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/preflight.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/preflight.py:950",
+      "file": "src/pyatb_lsp/preflight.py",
+      "line": 950,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/preflight.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/preflight.py:1024",
+      "file": "src/pyatb_lsp/preflight.py",
+      "line": 1024,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/preflight.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/preflight.py:1088",
+      "file": "src/pyatb_lsp/preflight.py",
+      "line": 1088,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/preflight.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/preflight.py:1121",
+      "file": "src/pyatb_lsp/preflight.py",
+      "line": 1121,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/preflight.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/preflight.py:1153",
+      "file": "src/pyatb_lsp/preflight.py",
+      "line": 1153,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/preflight.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/preflight.py:1204",
+      "file": "src/pyatb_lsp/preflight.py",
+      "line": 1204,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/preflight.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/preflight.py:192",
+      "file": "src/pyatb_lsp/preflight.py",
+      "line": 192,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/rich_diagnostics.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/rich_diagnostics.py:1",
+      "file": "src/pyatb_lsp/rich_diagnostics.py",
+      "line": 1,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/rich_diagnostics.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/rich_diagnostics.py:55",
+      "file": "src/pyatb_lsp/rich_diagnostics.py",
+      "line": 55,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/rich_diagnostics.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/rich_diagnostics.py:64",
+      "file": "src/pyatb_lsp/rich_diagnostics.py",
+      "line": 64,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/rich_diagnostics.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/rich_diagnostics.py:168",
+      "file": "src/pyatb_lsp/rich_diagnostics.py",
+      "line": 168,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/rich_diagnostics.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/rich_diagnostics.py:239",
+      "file": "src/pyatb_lsp/rich_diagnostics.py",
+      "line": 239,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/rich_diagnostics.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/rich_diagnostics.py:271",
+      "file": "src/pyatb_lsp/rich_diagnostics.py",
+      "line": 271,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/schema/__init__.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/schema/__init__.py:1",
+      "file": "src/pyatb_lsp/schema/__init__.py",
+      "line": 1,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/schema/official_rules.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/schema/official_rules.py:1",
+      "file": "src/pyatb_lsp/schema/official_rules.py",
+      "line": 1,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/server.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/server.py:1",
+      "file": "src/pyatb_lsp/server.py",
+      "line": 1,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/server.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/server.py:150",
+      "file": "src/pyatb_lsp/server.py",
+      "line": 150,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/server.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/server.py:193",
+      "file": "src/pyatb_lsp/server.py",
+      "line": 193,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/server.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/server.py:240",
+      "file": "src/pyatb_lsp/server.py",
+      "line": 240,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/server.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/server.py:258",
+      "file": "src/pyatb_lsp/server.py",
+      "line": 258,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/server.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/server.py:302",
+      "file": "src/pyatb_lsp/server.py",
+      "line": 302,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/server.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/server.py:357",
+      "file": "src/pyatb_lsp/server.py",
+      "line": 357,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/server.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/server.py:484",
+      "file": "src/pyatb_lsp/server.py",
+      "line": 484,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/server.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/server.py:547",
+      "file": "src/pyatb_lsp/server.py",
+      "line": 547,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/server.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/server.py:560",
+      "file": "src/pyatb_lsp/server.py",
+      "line": 560,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/server.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/server.py:585",
+      "file": "src/pyatb_lsp/server.py",
+      "line": 585,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/server.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/server.py:593",
+      "file": "src/pyatb_lsp/server.py",
+      "line": 593,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/server.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/server.py:600",
+      "file": "src/pyatb_lsp/server.py",
+      "line": 600,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/server.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/server.py:611",
+      "file": "src/pyatb_lsp/server.py",
+      "line": 611,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/server.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/server.py:631",
+      "file": "src/pyatb_lsp/server.py",
+      "line": 631,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/server.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/server.py:654",
+      "file": "src/pyatb_lsp/server.py",
+      "line": 654,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/server.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/server.py:681",
+      "file": "src/pyatb_lsp/server.py",
+      "line": 681,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/tool.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/tool.py:1",
+      "file": "src/pyatb_lsp/tool.py",
+      "line": 1,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/tool.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/tool.py:78",
+      "file": "src/pyatb_lsp/tool.py",
+      "line": 78,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/tool.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/tool.py:98",
+      "file": "src/pyatb_lsp/tool.py",
+      "line": 98,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/tool.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/tool.py:133",
+      "file": "src/pyatb_lsp/tool.py",
+      "line": 133,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/tool.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/tool.py:187",
+      "file": "src/pyatb_lsp/tool.py",
+      "line": 187,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/tool.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/tool.py:207",
+      "file": "src/pyatb_lsp/tool.py",
+      "line": 207,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/tool.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/tool.py:232",
+      "file": "src/pyatb_lsp/tool.py",
+      "line": 232,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/tool.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/tool.py:276",
+      "file": "src/pyatb_lsp/tool.py",
+      "line": 276,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/tool.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/tool.py:299",
+      "file": "src/pyatb_lsp/tool.py",
+      "line": 299,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "path": "src/pyatb_lsp/tool.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/pyatb_lsp/tool.py:351",
+      "file": "src/pyatb_lsp/tool.py",
+      "line": 351,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    }
+  ],
+  "wikiSources": [
+    {
+      "wikiPath": "wiki/concepts/abacus-integration.md",
+      "rawPath": "raw/assets/source-provenance.json",
+      "sourceUrl": "raw/assets/source-provenance.json",
+      "file": "wiki/concepts/abacus-integration.md",
+      "rawRefs": [
+        "raw/assets/source-provenance.json"
+      ],
+      "missingRawRefs": [],
+      "refsMissingFromManifest": []
+    },
+    {
+      "wikiPath": "wiki/concepts/agent-json.md",
+      "rawPath": "raw/assets/source-provenance.json",
+      "sourceUrl": "raw/assets/source-provenance.json",
+      "file": "wiki/concepts/agent-json.md",
+      "rawRefs": [
+        "raw/assets/source-provenance.json"
+      ],
+      "missingRawRefs": [],
+      "refsMissingFromManifest": []
+    },
+    {
+      "wikiPath": "wiki/concepts/berry-phase-geometry.md",
+      "rawPath": "raw/assets/source-provenance.json",
+      "sourceUrl": "raw/assets/source-provenance.json",
+      "file": "wiki/concepts/berry-phase-geometry.md",
+      "rawRefs": [
+        "raw/assets/source-provenance.json"
+      ],
+      "missingRawRefs": [],
+      "refsMissingFromManifest": []
+    },
+    {
+      "wikiPath": "wiki/concepts/boltzmann-transport.md",
+      "rawPath": "raw/assets/source-provenance.json",
+      "sourceUrl": "raw/assets/source-provenance.json",
+      "file": "wiki/concepts/boltzmann-transport.md",
+      "rawRefs": [
+        "raw/assets/source-provenance.json"
+      ],
+      "missingRawRefs": [],
+      "refsMissingFromManifest": []
+    },
+    {
+      "wikiPath": "wiki/concepts/completion-hover.md",
+      "rawPath": "raw/assets/source-provenance.json",
+      "sourceUrl": "raw/assets/source-provenance.json",
+      "file": "wiki/concepts/completion-hover.md",
+      "rawRefs": [
+        "raw/assets/source-provenance.json"
+      ],
+      "missingRawRefs": [],
+      "refsMissingFromManifest": []
+    },
+    {
+      "wikiPath": "wiki/concepts/diagnostic-contract.md",
+      "rawPath": "raw/assets/source-provenance.json",
+      "sourceUrl": "raw/assets/source-provenance.json",
+      "file": "wiki/concepts/diagnostic-contract.md",
+      "rawRefs": [
+        "raw/assets/source-provenance.json"
+      ],
+      "missingRawRefs": [],
+      "refsMissingFromManifest": []
+    },
+    {
+      "wikiPath": "wiki/concepts/diagnostic-engine-v1.md",
+      "rawPath": "raw/assets/source-provenance.json",
+      "sourceUrl": "raw/assets/source-provenance.json",
+      "file": "wiki/concepts/diagnostic-engine-v1.md",
+      "rawRefs": [
+        "raw/assets/source-provenance.json"
+      ],
+      "missingRawRefs": [],
+      "refsMissingFromManifest": []
+    },
+    {
+      "wikiPath": "wiki/concepts/formatter-design.md",
+      "rawPath": "raw/assets/source-provenance.json",
+      "sourceUrl": "raw/assets/source-provenance.json",
+      "file": "wiki/concepts/formatter-design.md",
+      "rawRefs": [
+        "raw/assets/source-provenance.json"
+      ],
+      "missingRawRefs": [],
+      "refsMissingFromManifest": []
+    },
+    {
+      "wikiPath": "wiki/concepts/input-file-format.md",
+      "rawPath": "raw/assets/source-provenance.json",
+      "sourceUrl": "raw/assets/source-provenance.json",
+      "file": "wiki/concepts/input-file-format.md",
+      "rawRefs": [
+        "raw/assets/source-provenance.json"
+      ],
+      "missingRawRefs": [],
+      "refsMissingFromManifest": []
+    },
+    {
+      "wikiPath": "wiki/concepts/lsp-architecture.md",
+      "rawPath": "raw/assets/source-provenance.json",
+      "sourceUrl": "raw/assets/source-provenance.json",
+      "file": "wiki/concepts/lsp-architecture.md",
+      "rawRefs": [
+        "raw/assets/source-provenance.json"
+      ],
+      "missingRawRefs": [],
+      "refsMissingFromManifest": []
+    },
+    {
+      "wikiPath": "wiki/concepts/matmaster-workflow.md",
+      "rawPath": "raw/assets/source-provenance.json",
+      "sourceUrl": "raw/assets/source-provenance.json",
+      "file": "wiki/concepts/matmaster-workflow.md",
+      "rawRefs": [
+        "raw/assets/source-provenance.json"
+      ],
+      "missingRawRefs": [],
+      "refsMissingFromManifest": []
+    },
+    {
+      "wikiPath": "wiki/concepts/testing-strategy.md",
+      "rawPath": "raw/assets/source-provenance.json",
+      "sourceUrl": "raw/assets/source-provenance.json",
+      "file": "wiki/concepts/testing-strategy.md",
+      "rawRefs": [
+        "raw/assets/source-provenance.json"
+      ],
+      "missingRawRefs": [],
+      "refsMissingFromManifest": []
+    },
+    {
+      "wikiPath": "wiki/entities/band-dos.md",
+      "rawPath": "raw/assets/source-provenance.json",
+      "sourceUrl": "raw/assets/source-provenance.json",
+      "file": "wiki/entities/band-dos.md",
+      "rawRefs": [
+        "raw/assets/source-provenance.json"
+      ],
+      "missingRawRefs": [],
+      "refsMissingFromManifest": []
+    },
+    {
+      "wikiPath": "wiki/entities/conductivity-spin.md",
+      "rawPath": "raw/assets/source-provenance.json",
+      "sourceUrl": "raw/assets/source-provenance.json",
+      "file": "wiki/entities/conductivity-spin.md",
+      "rawRefs": [
+        "raw/assets/source-provenance.json"
+      ],
+      "missingRawRefs": [],
+      "refsMissingFromManifest": []
+    },
+    {
+      "wikiPath": "wiki/entities/hr-sr-files.md",
+      "rawPath": "raw/assets/source-provenance.json",
+      "sourceUrl": "raw/assets/source-provenance.json",
+      "file": "wiki/entities/hr-sr-files.md",
+      "rawRefs": [
+        "raw/assets/source-provenance.json"
+      ],
+      "missingRawRefs": [],
+      "refsMissingFromManifest": []
+    },
+    {
+      "wikiPath": "wiki/entities/kmesh-kpath.md",
+      "rawPath": "raw/assets/source-provenance.json",
+      "sourceUrl": "raw/assets/source-provenance.json",
+      "file": "wiki/entities/kmesh-kpath.md",
+      "rawRefs": [
+        "raw/assets/source-provenance.json"
+      ],
+      "missingRawRefs": [],
+      "refsMissingFromManifest": []
+    },
+    {
+      "wikiPath": "wiki/entities/output-config.md",
+      "rawPath": "raw/assets/source-provenance.json",
+      "sourceUrl": "raw/assets/source-provenance.json",
+      "file": "wiki/entities/output-config.md",
+      "rawRefs": [
+        "raw/assets/source-provenance.json"
+      ],
+      "missingRawRefs": [],
+      "refsMissingFromManifest": []
+    },
+    {
+      "wikiPath": "wiki/entities/pyatb-package.md",
+      "rawPath": "raw/assets/source-provenance.json",
+      "sourceUrl": "raw/assets/source-provenance.json",
+      "file": "wiki/entities/pyatb-package.md",
+      "rawRefs": [
+        "raw/assets/source-provenance.json"
+      ],
+      "missingRawRefs": [],
+      "refsMissingFromManifest": []
+    },
+    {
+      "wikiPath": "wiki/entities/tightbinding.md",
+      "rawPath": "raw/assets/source-provenance.json",
+      "sourceUrl": "raw/assets/source-provenance.json",
+      "file": "wiki/entities/tightbinding.md",
+      "rawRefs": [
+        "raw/assets/source-provenance.json"
+      ],
+      "missingRawRefs": [],
+      "refsMissingFromManifest": []
+    },
+    {
+      "wikiPath": "wiki/index.md",
+      "rawPath": "raw/assets/source-provenance.json",
+      "sourceUrl": "raw/assets/source-provenance.json",
+      "file": "wiki/index.md",
+      "rawRefs": [
+        "raw/assets/source-provenance.json"
+      ],
+      "missingRawRefs": [],
+      "refsMissingFromManifest": []
+    },
+    {
+      "wikiPath": "wiki/log.md",
+      "rawPath": "raw/assets/source-provenance.json",
+      "sourceUrl": "raw/assets/source-provenance.json",
+      "file": "wiki/log.md",
+      "rawRefs": [
+        "raw/assets/source-provenance.json"
+      ],
+      "missingRawRefs": [],
+      "refsMissingFromManifest": []
+    },
+    {
+      "wikiPath": "wiki/synthesis/cli-reference.md",
+      "rawPath": "raw/assets/source-provenance.json",
+      "sourceUrl": "raw/assets/source-provenance.json",
+      "file": "wiki/synthesis/cli-reference.md",
+      "rawRefs": [
+        "raw/assets/source-provenance.json"
+      ],
+      "missingRawRefs": [],
+      "refsMissingFromManifest": []
+    },
+    {
+      "wikiPath": "wiki/synthesis/code-actions.md",
+      "rawPath": "raw/assets/source-provenance.json",
+      "sourceUrl": "raw/assets/source-provenance.json",
+      "file": "wiki/synthesis/code-actions.md",
+      "rawRefs": [
+        "raw/assets/source-provenance.json"
+      ],
+      "missingRawRefs": [],
+      "refsMissingFromManifest": []
+    },
+    {
+      "wikiPath": "wiki/synthesis/diagnostic-codes.md",
+      "rawPath": "raw/assets/source-provenance.json",
+      "sourceUrl": "raw/assets/source-provenance.json",
+      "file": "wiki/synthesis/diagnostic-codes.md",
+      "rawRefs": [
+        "raw/assets/source-provenance.json"
+      ],
+      "missingRawRefs": [],
+      "refsMissingFromManifest": []
+    },
+    {
+      "wikiPath": "wiki/synthesis/log-parser.md",
+      "rawPath": "raw/assets/source-provenance.json",
+      "sourceUrl": "raw/assets/source-provenance.json",
+      "file": "wiki/synthesis/log-parser.md",
+      "rawRefs": [
+        "raw/assets/source-provenance.json"
+      ],
+      "missingRawRefs": [],
+      "refsMissingFromManifest": []
+    },
+    {
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "rawPath": "raw/assets/source-provenance.json",
+      "sourceUrl": "raw/assets/source-provenance.json",
+      "file": "wiki/synthesis/openqc-agent-context.md",
+      "rawRefs": [
+        "raw/assets/source-provenance.json"
+      ],
+      "missingRawRefs": [],
+      "refsMissingFromManifest": []
+    },
+    {
+      "wikiPath": "wiki/synthesis/quickstart.md",
+      "rawPath": "raw/assets/source-provenance.json",
+      "sourceUrl": "raw/assets/source-provenance.json",
+      "file": "wiki/synthesis/quickstart.md",
+      "rawRefs": [
+        "raw/assets/source-provenance.json"
+      ],
+      "missingRawRefs": [],
+      "refsMissingFromManifest": []
+    },
+    {
+      "wikiPath": "wiki/synthesis/transport-coefficient-guide.md",
+      "rawPath": "raw/assets/source-provenance.json",
+      "sourceUrl": "raw/assets/source-provenance.json",
+      "file": "wiki/synthesis/transport-coefficient-guide.md",
+      "rawRefs": [
+        "raw/assets/source-provenance.json"
+      ],
+      "missingRawRefs": [],
+      "refsMissingFromManifest": []
+    },
+    {
+      "wikiPath": "wiki/synthesis/validation-rules.md",
+      "rawPath": "raw/assets/source-provenance.json",
+      "sourceUrl": "raw/assets/source-provenance.json",
+      "file": "wiki/synthesis/validation-rules.md",
+      "rawRefs": [
+        "raw/assets/source-provenance.json"
+      ],
+      "missingRawRefs": [],
+      "refsMissingFromManifest": []
+    }
+  ],
+  "ruleIds": [
+    {
+      "code": "PYATB-RAW-SOURCE-001",
+      "sourcePath": "raw/assets/DIAGNOSTIC_ENGINE_V1.md",
+      "rawPath": "raw/assets/DIAGNOSTIC_ENGINE_V1.md"
+    },
+    {
+      "code": "PYATB-RAW-SOURCE-002",
+      "sourcePath": "raw/assets/README.md",
+      "rawPath": "raw/assets/README.md"
+    },
+    {
+      "code": "PYATB-RAW-SOURCE-003",
+      "sourcePath": "raw/assets/analyzer.py",
+      "rawPath": "raw/assets/analyzer.py"
+    },
+    {
+      "code": "PYATB-RAW-SOURCE-004",
+      "sourcePath": "raw/assets/complete_valid.py",
+      "rawPath": "raw/assets/complete_valid.py"
+    },
+    {
+      "code": "PYATB-RAW-SOURCE-005",
+      "sourcePath": "raw/assets/pyatb-abacus-integration.md",
+      "rawPath": "raw/assets/pyatb-abacus-integration.md"
+    },
+    {
+      "code": "PYATB-RAW-SOURCE-006",
+      "sourcePath": "raw/assets/pyatb-examples.md",
+      "rawPath": "raw/assets/pyatb-examples.md"
+    },
+    {
+      "code": "PYATB-RAW-SOURCE-007",
+      "sourcePath": "raw/assets/pyatb-input-reference.md",
+      "rawPath": "raw/assets/pyatb-input-reference.md"
+    },
+    {
+      "code": "PYATB-RAW-SOURCE-008",
+      "sourcePath": "raw/assets/pyatb-introduction.md",
+      "rawPath": "raw/assets/pyatb-introduction.md"
+    },
+    {
+      "code": "PYATB-RAW-SOURCE-009",
+      "sourcePath": "raw/assets/pyatb-official-docs.json",
+      "rawPath": "raw/assets/pyatb-official-docs.json"
+    },
+    {
+      "code": "PYATB-RAW-SOURCE-010",
+      "sourcePath": "raw/assets/pyatb-readme.md",
+      "rawPath": "raw/assets/pyatb-readme.md"
+    },
+    {
+      "code": "PYATB-RAW-SOURCE-011",
+      "sourcePath": "raw/assets/pyatb-related-tools.md",
+      "rawPath": "raw/assets/pyatb-related-tools.md"
+    },
+    {
+      "code": "PYATB-RAW-SOURCE-012",
+      "sourcePath": "raw/assets/pyatb-theory.md",
+      "rawPath": "raw/assets/pyatb-theory.md"
+    },
+    {
+      "code": "PYATB-RAW-SOURCE-013",
+      "sourcePath": "raw/assets/pyatb-transport-implementation.md",
+      "rawPath": "raw/assets/pyatb-transport-implementation.md"
+    },
+    {
+      "code": "PYATB-RAW-SOURCE-014",
+      "sourcePath": "raw/assets/server.py",
+      "rawPath": "raw/assets/server.py"
+    },
+    {
+      "code": "PYATB-RAW-SOURCE-015",
+      "sourcePath": "raw/assets/source-provenance.json",
+      "rawPath": "raw/assets/source-provenance.json"
+    }
+  ],
+  "sourceUrls": [
+    {
+      "rawPath": "raw/assets/DIAGNOSTIC_ENGINE_V1.md",
+      "url": "https://pyatb.github.io/pyatb/"
+    },
+    {
+      "rawPath": "raw/assets/pyatb-input-reference.md",
+      "url": "https://pyatb.github.io/pyatb/user_guide/input.html"
+    },
+    {
+      "rawPath": "raw/assets/pyatb-examples.md",
+      "url": "https://pyatb.github.io/pyatb/user_guide/examples.html"
+    },
+    {
+      "rawPath": "raw/assets/pyatb-abacus-integration.md",
+      "url": "https://pyatb.github.io/pyatb/user_guide/abacus.html"
+    },
+    {
+      "rawPath": "raw/assets/pyatb-transport-implementation.md",
+      "url": "https://pyatb.github.io/pyatb/"
+    },
+    {
+      "rawPath": "raw/assets/DIAGNOSTIC_ENGINE_V1.md",
+      "url": "raw/assets/DIAGNOSTIC_ENGINE_V1.md"
+    },
+    {
+      "rawPath": "raw/assets/README.md",
+      "url": "raw/assets/README.md"
+    },
+    {
+      "rawPath": "raw/assets/analyzer.py",
+      "url": "raw/assets/analyzer.py"
+    },
+    {
+      "rawPath": "raw/assets/complete_valid.py",
+      "url": "raw/assets/complete_valid.py"
+    },
+    {
+      "rawPath": "raw/assets/pyatb-abacus-integration.md",
+      "url": "raw/assets/pyatb-abacus-integration.md"
+    },
+    {
+      "rawPath": "raw/assets/pyatb-examples.md",
+      "url": "raw/assets/pyatb-examples.md"
+    },
+    {
+      "rawPath": "raw/assets/pyatb-input-reference.md",
+      "url": "raw/assets/pyatb-input-reference.md"
+    },
+    {
+      "rawPath": "raw/assets/pyatb-introduction.md",
+      "url": "raw/assets/pyatb-introduction.md"
+    },
+    {
+      "rawPath": "raw/assets/pyatb-official-docs.json",
+      "url": "raw/assets/pyatb-official-docs.json"
+    },
+    {
+      "rawPath": "raw/assets/pyatb-readme.md",
+      "url": "raw/assets/pyatb-readme.md"
+    },
+    {
+      "rawPath": "raw/assets/pyatb-related-tools.md",
+      "url": "raw/assets/pyatb-related-tools.md"
+    },
+    {
+      "rawPath": "raw/assets/pyatb-theory.md",
+      "url": "raw/assets/pyatb-theory.md"
+    },
+    {
+      "rawPath": "raw/assets/pyatb-transport-implementation.md",
+      "url": "raw/assets/pyatb-transport-implementation.md"
+    },
+    {
+      "rawPath": "raw/assets/server.py",
+      "url": "raw/assets/server.py"
+    },
+    {
+      "rawPath": "raw/assets/source-provenance.json",
+      "url": "raw/assets/source-provenance.json"
+    }
+  ],
+  "rawManifest": {
+    "path": "raw/assets/manifest.json",
+    "ok": true,
+    "entries": [
+      {
+        "path": "DIAGNOSTIC_ENGINE_V1.md",
+        "rawPath": "raw/assets/DIAGNOSTIC_ENGINE_V1.md",
+        "checksumSha256": "11f7a7c6fa42a3411a5801eb79b36c8b39b6021a19021547c85d0e3b7eaa59dd"
+      },
+      {
+        "path": "README.md",
+        "rawPath": "raw/assets/README.md",
+        "checksumSha256": "35599aa906db475dc070b05ed4f4687a20c8ccc801ed96d51afc14a23b59b815"
+      },
+      {
+        "path": "analyzer.py",
+        "rawPath": "raw/assets/analyzer.py",
+        "checksumSha256": "d2e7318bc215cb868dbcd6f75c0317466039c3f83badd2878015daf62ba7c7d6"
+      },
+      {
+        "path": "complete_valid.py",
+        "rawPath": "raw/assets/complete_valid.py",
+        "checksumSha256": "d10ccb114ff409ed8a741105d58df0e35b3605164d94726da937a1deff5c82e6"
+      },
+      {
+        "path": "pyatb-abacus-integration.md",
+        "rawPath": "raw/assets/pyatb-abacus-integration.md",
+        "checksumSha256": "84535d068c0ac1966941c6fa6cf468e5100489eccd50ce510d2ca659aaa65c5f"
+      },
+      {
+        "path": "pyatb-examples.md",
+        "rawPath": "raw/assets/pyatb-examples.md",
+        "checksumSha256": "1208e585c1854c1297606ca4b72f331b2a85d9e0480f81b4d1c16a3733b001ca"
+      },
+      {
+        "path": "pyatb-input-reference.md",
+        "rawPath": "raw/assets/pyatb-input-reference.md",
+        "checksumSha256": "a52bd2f3ecee6d229a97298f4dbd2362de70dd99df4e2e0ddfcce216cc993518"
+      },
+      {
+        "path": "pyatb-introduction.md",
+        "rawPath": "raw/assets/pyatb-introduction.md",
+        "checksumSha256": "05038a94ffaff8197982d4505c3e2a40e3857568b81c7376d1b7af694146d499"
+      },
+      {
+        "path": "pyatb-official-docs.json",
+        "rawPath": "raw/assets/pyatb-official-docs.json",
+        "checksumSha256": "cf6885b6b89fed1d05e471dd8efc72c55066ab5b0e8b4d8ed6ed3869689478d0"
+      },
+      {
+        "path": "pyatb-readme.md",
+        "rawPath": "raw/assets/pyatb-readme.md",
+        "checksumSha256": "1c402f5adc345b32f55f8cd14874d8950c42e9ef1cbae91e801064c5325f6df3"
+      },
+      {
+        "path": "pyatb-related-tools.md",
+        "rawPath": "raw/assets/pyatb-related-tools.md",
+        "checksumSha256": "161ceff8a4b390a94db8408a8d887c7ed2e89fee40423460fbcf5c63666cb363"
+      },
+      {
+        "path": "pyatb-theory.md",
+        "rawPath": "raw/assets/pyatb-theory.md",
+        "checksumSha256": "5cdec39f7a6be6da87e02e703ac5178f566225e71f5ffc35663aa3abadcfb032"
+      },
+      {
+        "path": "pyatb-transport-implementation.md",
+        "rawPath": "raw/assets/pyatb-transport-implementation.md",
+        "checksumSha256": "729caf07e273003ba1d7401094cd5a4e02ef9f8dcb38c6344249ef2c467a9b8c"
+      },
+      {
+        "path": "server.py",
+        "rawPath": "raw/assets/server.py",
+        "checksumSha256": "2da119b3f0e31a12e7794ae099345393a90a42d15a072f6eefa8d7b3d5b5fa89"
+      },
+      {
+        "path": "source-provenance.json",
+        "rawPath": "raw/assets/source-provenance.json",
+        "checksumSha256": "f46fdd77c2cf957308d22877c0ca0ef5bd42f16d09a7d3a11b74e1cfee900268"
+      }
+    ],
+    "errors": []
+  },
+  "manifestErrors": [],
+  "docstringViolations": [],
+  "wikiViolations": []
+}

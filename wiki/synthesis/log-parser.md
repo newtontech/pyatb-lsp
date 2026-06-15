@@ -97,3 +97,7 @@ The log parser is integrated into the LSP capabilities:
 
 - [Diagnostic Codes](diagnostic-codes.md)
 - [Agent JSON](../concepts/agent-json.md)
+
+## Traceability Sources
+
+- Raw evidence: `raw/assets/source-provenance.json`

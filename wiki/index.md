@@ -38,3 +38,7 @@ PYATB (Python ab initio tight binding simulation package) is an open-source pack
 
 ### Synthesis
 - [transport-coefficient-guide](synthesis/transport-coefficient-guide.md) - How to calculate transport coefficients with PYATB
+
+## Traceability Sources
+
+- Raw evidence: `raw/assets/source-provenance.json`

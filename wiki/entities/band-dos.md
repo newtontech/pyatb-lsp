@@ -63,3 +63,7 @@ LSP 为这些术语提供悬停文档：
 
 - [K-Mesh & K-Path](kmesh-kpath.md)
 - [TightBinding Class](tightbinding.md)
+
+## Traceability Sources
+
+- Raw evidence: `raw/assets/source-provenance.json`

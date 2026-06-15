@@ -11,6 +11,8 @@ Fix operations:
 - add_output_path: Add missing output path
 - fix_syntax: Placeholder for syntax error fixes
 - fix_json_syntax: Placeholder for JSON syntax fixes
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
 """
 
 from __future__ import annotations
@@ -27,21 +29,23 @@ def generate_fix_preview(
 ) -> dict[str, Any] | None:
     """Generate a fix preview for a diagnostic.
 
-    Parameters
-    ----------
-    path
-        The file path.
-    content
-        The file content.
-    diagnostic_code
-        The diagnostic code to fix.
-    suggested_fix
-        The suggested fix from the diagnostic.
+        Parameters
+        ----------
+        path
+            The file path.
+        content
+            The file content.
+        diagnostic_code
+            The diagnostic code to fix.
+        suggested_fix
+            The suggested fix from the diagnostic.
 
-    Returns
-    -------
-    dict or None
-        A fix preview with edit operations, or None if no fix is available.
+        Returns
+        -------
+        dict or None
+            A fix preview with edit operations, or None if no fix is available.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
     """
     if suggested_fix is None:
         return None
@@ -83,7 +87,10 @@ def generate_fix_preview(
 def _fix_add_import(
     path: Path, content: str, suggested_fix: dict[str, Any]
 ) -> dict[str, Any] | None:
-    """Fix missing import by adding import statement."""
+    """Fix missing import by adding import statement.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
+    """
     module = suggested_fix.get("module", "pyatb")
     lines = content.splitlines()
 
@@ -126,7 +133,10 @@ def _fix_add_import(
 def _fix_add_symbol_reference(
     path: Path, content: str, suggested_fix: dict[str, Any]
 ) -> dict[str, Any] | None:
-    """Fix missing symbol reference by adding variable assignment."""
+    """Fix missing symbol reference by adding variable assignment.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
+    """
     symbol = suggested_fix.get("symbol", "HR.dat")
     lines = content.splitlines()
 
@@ -178,7 +188,10 @@ def _fix_add_symbol_reference(
 def _fix_add_structure_reference(
     path: Path, content: str, suggested_fix: dict[str, Any]
 ) -> dict[str, Any] | None:
-    """Fix missing structure reference by adding TightBinding usage."""
+    """Fix missing structure reference by adding TightBinding usage.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
+    """
     options = suggested_fix.get("options", ["hr_file = 'HR.dat'"])
     lines = content.splitlines()
 
@@ -221,7 +234,10 @@ def _fix_add_structure_reference(
 def _fix_add_output_path(
     path: Path, content: str, suggested_fix: dict[str, Any]
 ) -> dict[str, Any] | None:
-    """Fix missing output path by adding output_path variable."""
+    """Fix missing output path by adding output_path variable.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
+    """
     example = suggested_fix.get("example", 'output_path = "results/"')
     lines = content.splitlines()
 
@@ -255,7 +271,10 @@ def _fix_add_output_path(
 
 
 def _fix_syntax(path: Path, content: str, suggested_fix: dict[str, Any]) -> dict[str, Any] | None:
-    """Placeholder for syntax error fixes."""
+    """Placeholder for syntax error fixes.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
+    """
     return {
         "title": "Fix syntax error (manual review required)",
         "kind": "quickfix",
@@ -270,7 +289,10 @@ def _fix_syntax(path: Path, content: str, suggested_fix: dict[str, Any]) -> dict
 def _fix_json_syntax(
     path: Path, content: str, suggested_fix: dict[str, Any]
 ) -> dict[str, Any] | None:
-    """Placeholder for JSON syntax fixes."""
+    """Placeholder for JSON syntax fixes.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
+    """
     return {
         "title": "Fix JSON syntax error (manual review required)",
         "kind": "quickfix",
@@ -285,7 +307,10 @@ def _fix_json_syntax(
 def _fix_add_required_token(
     path: Path, content: str, suggested_fix: dict[str, Any]
 ) -> dict[str, Any] | None:
-    """Fix missing required token by adding it."""
+    """Fix missing required token by adding it.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
+    """
     token = suggested_fix.get("token", "")
     if not token:
         return None
@@ -322,7 +347,10 @@ def _fix_add_required_token(
 def _fix_add_structure_block(
     path: Path, content: str, suggested_fix: dict[str, Any]
 ) -> dict[str, Any] | None:
-    """Fix missing structure block by adding required tokens."""
+    """Fix missing structure block by adding required tokens.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
+    """
     tokens = suggested_fix.get("tokens", [])
     if not tokens:
         return None
@@ -360,7 +388,10 @@ def _fix_add_structure_block(
 def _fix_move_command(
     path: Path, content: str, suggested_fix: dict[str, Any]
 ) -> dict[str, Any] | None:
-    """Fix command ordering by moving command to first position."""
+    """Fix command ordering by moving command to first position.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
+    """
     command = suggested_fix.get("command", "")
     if not command:
         return None
@@ -391,7 +422,10 @@ def _fix_move_command(
                 {
                     "range": {
                         "start": {"line": command_index, "character": 0},
-                        "end": {"line": command_index, "character": len(command_line) + 1},
+                        "end": {
+                            "line": command_index,
+                            "character": len(command_line) + 1,
+                        },
                     },
                     "newText": "",
                 },
@@ -410,7 +444,10 @@ def _fix_move_command(
 def _fix_add_json_key(
     path: Path, content: str, suggested_fix: dict[str, Any]
 ) -> dict[str, Any] | None:
-    """Fix missing JSON key by adding it."""
+    """Fix missing JSON key by adding it.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
+    """
     key = suggested_fix.get("key", "")
     if not key:
         return None

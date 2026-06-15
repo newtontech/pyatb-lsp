@@ -60,3 +60,7 @@ LSP 提供：
 
 - [HR/SR Files](hr-sr-files.md)
 - [K-Mesh & K-Path](kmesh-kpath.md)
+
+## Traceability Sources
+
+- Raw evidence: `raw/assets/source-provenance.json`

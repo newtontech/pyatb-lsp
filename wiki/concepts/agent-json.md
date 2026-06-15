@@ -79,3 +79,7 @@ assert result["ok"]
 
 - [Diagnostic Contract](diagnostic-contract.md)
 - [Diagnostic Codes](../synthesis/diagnostic-codes.md)
+
+## Traceability Sources
+
+- Raw evidence: `raw/assets/source-provenance.json`

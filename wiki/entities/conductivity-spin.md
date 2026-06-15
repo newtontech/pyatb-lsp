@@ -75,3 +75,7 @@ LSP 关键词目录包括这些术语用于补全和悬停：
 
 - [TightBinding Class](tightbinding.md)
 - [Band & DOS](band-dos.md)
+
+## Traceability Sources
+
+- Raw evidence: `raw/assets/source-provenance.json`

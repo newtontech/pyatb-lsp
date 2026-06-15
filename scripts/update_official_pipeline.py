@@ -4,6 +4,8 @@
 Runtime code reads the checked-in rule index under
 ``src/pyatb_lsp/schema/pyatb_rules.json``. Network access is optional; the
 offline mode validates the checked-in manifest without fetching upstream docs.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
 """
 
 from __future__ import annotations
@@ -121,7 +123,9 @@ def validate_offline() -> None:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--timeout", type=int, default=30)
-    parser.add_argument("--offline", action="store_true", help="Validate checked-in artifacts only.")
+    parser.add_argument(
+        "--offline", action="store_true", help="Validate checked-in artifacts only."
+    )
     parser.add_argument(
         "--fetch-official",
         action="store_true",
@@ -174,7 +178,10 @@ def main(argv: list[str] | None = None) -> int:
             if path.exists():
                 entry["sha256"] = sha256_file(path)
                 entry["size_bytes"] = path.stat().st_size
-        remote = next((item for item in fetched_remote if item.get("id") == source.get("id")), None)
+        remote = next(
+            (item for item in fetched_remote if item.get("id") == source.get("id")),
+            None,
+        )
         if remote and remote.get("sha256"):
             entry["remote_sha256"] = remote["sha256"]
             entry["final_url"] = remote.get("final_url", remote.get("url"))

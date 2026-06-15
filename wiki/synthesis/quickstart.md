@@ -92,3 +92,7 @@ make test      # pytest
 - [LSP Architecture](../concepts/lsp-architecture.md)
 - [Diagnostic Codes](diagnostic-codes.md)
 - [CLI Reference](cli-reference.md)
+
+## Traceability Sources
+
+- Raw evidence: `raw/assets/source-provenance.json`

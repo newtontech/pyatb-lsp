@@ -90,3 +90,7 @@ pyatb-test static ./case       # Tester
 
 - [Diagnostic Contract](diagnostic-contract.md)
 - [MatMaster Workflow](matmaster-workflow.md)
+
+## Traceability Sources
+
+- Raw evidence: `raw/assets/source-provenance.json`

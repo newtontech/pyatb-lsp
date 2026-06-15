@@ -33,3 +33,7 @@
 - wiki/concepts/input-file-format.md
 - wiki/concepts/abacus-integration.md
 - wiki/synthesis/transport-coefficient-guide.md
+
+## Traceability Sources
+
+- Raw evidence: `raw/assets/source-provenance.json`

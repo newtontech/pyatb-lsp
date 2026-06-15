@@ -89,3 +89,7 @@ alpha_xy = -(e/hbar*T) sum_n int dk Omega_n(k) (E_n - mu) (-df/dE)
 - All geometric calculations require the r(R) position/dipole matrix
 - SOC (nspin=4) needed for AHC, SHC in non-magnetic materials
 - Sufficient k-mesh convergence is critical for accurate quantized quantities
+
+## Traceability Sources
+
+- Raw evidence: `raw/assets/source-provenance.json`

@@ -55,3 +55,7 @@ LSP 强制执行这些 MatMaster 工作流规则。
 
 - [TightBinding Class](tightbinding.md)
 - [Output Configuration](output-config.md)
+
+## Traceability Sources
+
+- Raw evidence: `raw/assets/source-provenance.json`

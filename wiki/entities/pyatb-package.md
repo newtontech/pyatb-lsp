@@ -41,3 +41,7 @@ Plus an `Input` control file with block-structured parameters.
 ## Key Papers
 
 - Gan Jin et al., CPC 291 (2023) 108844. DOI: 10.1016/j.cpc.2023.108844
+
+## Traceability Sources
+
+- Raw evidence: `raw/assets/source-provenance.json`

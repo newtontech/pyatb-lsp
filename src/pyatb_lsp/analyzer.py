@@ -10,6 +10,8 @@ Provides rule-based diagnostics with PYATB-prefixed codes:
 - PYATB-E075: Runtime log traceback patterns
 
 Legacy codes (PYATB001, PYATB010, etc.) are retained for backward compatibility.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
 """
 
 from __future__ import annotations
@@ -97,7 +99,13 @@ def analyze_file(path: Path) -> list[Diagnostic]:
         content = path.read_text(encoding="utf-8")
     except UnicodeDecodeError:
         return [
-            Diagnostic(f"{CODE_PREFIX}202", "error", "file is not valid UTF-8 text", str(path), 1)
+            Diagnostic(
+                f"{CODE_PREFIX}202",
+                "error",
+                "file is not valid UTF-8 text",
+                str(path),
+                1,
+            )
         ]
     if DOMAIN_KIND == "python":
         return _analyze_python(path, content)
@@ -343,7 +351,10 @@ def _analyze_python(path: Path, content: str) -> list[Diagnostic]:
                 file=str(path),
                 line=1,
                 evidence=["MatMaster best practice: explicit output path for reproducibility"],
-                suggested_fix={"kind": "add_output_path", "example": 'output_path = "results/"'},
+                suggested_fix={
+                    "kind": "add_output_path",
+                    "example": 'output_path = "results/"',
+                },
                 confidence=0.7,
             )
         )
@@ -422,7 +433,10 @@ def _analyze_json_or_text(path: Path, content: str) -> list[Diagnostic]:
 
 
 def _detect_traceback_patterns(path: Path, content: str) -> list[Diagnostic]:
-    """Detect Python traceback patterns in content."""
+    """Detect Python traceback patterns in content.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
+    """
     diagnostics: list[Diagnostic] = []
     lines = content.splitlines()
     in_traceback = False
@@ -443,7 +457,10 @@ def _detect_traceback_patterns(path: Path, content: str) -> list[Diagnostic]:
                     file=str(path),
                     line=traceback_start,
                     evidence=["Log parser detected Python traceback"],
-                    suggested_fix={"kind": "investigate_traceback", "error": error_line},
+                    suggested_fix={
+                        "kind": "investigate_traceback",
+                        "error": error_line,
+                    },
                     confidence=0.95,
                 )
             )
@@ -469,17 +486,19 @@ def _detect_traceback_patterns(path: Path, content: str) -> list[Diagnostic]:
 def parse_log_content(content: str, file_path: str = "<log>") -> list[Diagnostic]:
     """Parse runtime log content and extract error diagnostics (#22).
 
-    Parameters
-    ----------
-    content
-        The log file text content.
-    file_path
-        The path or URI to report in diagnostics.
+        Parameters
+        ----------
+        content
+            The log file text content.
+        file_path
+            The path or URI to report in diagnostics.
 
-    Returns
-    -------
-    list[Diagnostic]
-        Diagnostics extracted from traceback patterns and common error markers.
+        Returns
+        -------
+        list[Diagnostic]
+            Diagnostics extracted from traceback patterns and common error markers.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
     """
     path = Path(file_path)
     diagnostics: list[Diagnostic] = []
@@ -619,7 +638,10 @@ _PYTHON_STATEMENT_KEYWORDS = frozenset(
 
 
 def _is_python_statement(stripped: str) -> bool:
-    """Check if a line is a Python statement that should not be reformatted."""
+    """Check if a line is a Python statement that should not be reformatted.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
+    """
     if not stripped:
         return False
     first_token = stripped.split()[0].rstrip(":(")
@@ -629,20 +651,22 @@ def _is_python_statement(stripped: str) -> bool:
 def format_text(content: str) -> str:
     """Format PyATB document text.
 
-    This formatter is *safe*: it only aligns key=value pairs and
-    keyword-parameter lines. Python code (import, def, class, etc.)
-    is passed through unchanged. The formatter is idempotent:
-    ``format_text(format_text(x)) == format_text(x)`` for all inputs.
+        This formatter is *safe*: it only aligns key=value pairs and
+        keyword-parameter lines. Python code (import, def, class, etc.)
+        is passed through unchanged. The formatter is idempotent:
+        ``format_text(format_text(x)) == format_text(x)`` for all inputs.
 
-    Parameters
-    ----------
-    content
-        The raw document text.
+        Parameters
+        ----------
+        content
+            The raw document text.
 
-    Returns
-    -------
-    str
-        Formatted text with trailing newline.
+        Returns
+        -------
+        str
+            Formatted text with trailing newline.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
     """
     lines: list[str] = []
     for raw in content.splitlines():

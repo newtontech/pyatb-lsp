@@ -74,3 +74,7 @@ k_e = (1/T) * (L_1 * L_0^{-1} * L_1 - L_2)
 - nspin must be 1 or 4 (not 2)
 - Requires r(R) matrix (position/dipole)
 - K-mesh must be sufficiently dense for convergence
+
+## Traceability Sources
+
+- Raw evidence: `raw/assets/source-provenance.json`

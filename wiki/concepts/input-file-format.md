@@ -137,3 +137,7 @@ mpirun -np 6 pyatb
 ```
 
 Results in `Out/` directory, organized by calculation type.
+
+## Traceability Sources
+
+- Raw evidence: `raw/assets/source-provenance.json`

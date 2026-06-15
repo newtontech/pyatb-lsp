@@ -9,6 +9,8 @@ Capabilities:
 - Completion: PyATB keyword completion
 - Formatting (#5): Safe idempotent formatter
 - Code Actions (#21): Quick-fix actions for diagnostics
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
 """
 
 from __future__ import annotations
@@ -145,7 +147,10 @@ HOVER_DOCS: dict[str, str] = {
 
 
 def _ls_diagnostic_from_analyzer(diag: object, uri: str) -> Diagnostic:
-    """Convert an analyzer Diagnostic (pyatb_lsp.diagnostics) to an LSP Diagnostic."""
+    """Convert an analyzer Diagnostic (pyatb_lsp.diagnostics) to an LSP Diagnostic.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
+    """
     from pyatb_lsp.diagnostics import Diagnostic as AnalyzerDiag
 
     if not isinstance(diag, AnalyzerDiag):
@@ -187,17 +192,19 @@ def _ls_diagnostic_from_analyzer(diag: object, uri: str) -> Diagnostic:
 def diagnose_document(uri: str, content: str) -> list[Diagnostic]:
     """Analyse the content of a Python/PyATB document and return LSP diagnostics.
 
-    Parameters
-    ----------
-    uri
-        The document URI (used for file path extraction).
-    content
-        The full text content of the document.
+        Parameters
+        ----------
+        uri
+            The document URI (used for file path extraction).
+        content
+            The full text content of the document.
 
-    Returns
-    -------
-    list[Diagnostic]
-        Zero or more LSP Diagnostic objects.
+        Returns
+        -------
+        list[Diagnostic]
+            Zero or more LSP Diagnostic objects.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
     """
     import tempfile
 
@@ -232,15 +239,17 @@ def diagnose_document(uri: str, content: str) -> list[Diagnostic]:
 def format_document(content: str) -> str:
     """Format PyATB document text using the analyzer's safe formatter.
 
-    Parameters
-    ----------
-    content
-        The raw document text.
+        Parameters
+        ----------
+        content
+            The raw document text.
 
-    Returns
-    -------
-    str
-        Formatted text (idempotent).
+        Returns
+        -------
+        str
+            Formatted text (idempotent).
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
     """
     return format_text(content)
 
@@ -248,15 +257,17 @@ def format_document(content: str) -> str:
 def complete_keywords(prefix: str) -> list[CompletionItem]:
     """Return completion items whose label starts with *prefix*.
 
-    Parameters
-    ----------
-    prefix
-        The user's current word prefix (case-insensitive).
+        Parameters
+        ----------
+        prefix
+            The user's current word prefix (case-insensitive).
 
-    Returns
-    -------
-    list[CompletionItem]
-        Completion items matching the prefix.
+        Returns
+        -------
+        list[CompletionItem]
+            Completion items matching the prefix.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
     """
     lower = prefix.lower()
     items: list[CompletionItem] = []
@@ -290,19 +301,21 @@ def complete_keywords(prefix: str) -> list[CompletionItem]:
 def hover_info(content: str, line: int, column: int) -> str | None:
     """Return hover documentation for the word at *line*, *column* in *content*.
 
-    Parameters
-    ----------
-    content
-        The full document text.
-    line
-        Zero-based line index.
-    column
-        Zero-based column index.
+        Parameters
+        ----------
+        content
+            The full document text.
+        line
+            Zero-based line index.
+        column
+            Zero-based column index.
 
-    Returns
-    -------
-    str or None
-        Markdown hover text, or ``None`` if nothing relevant was found.
+        Returns
+        -------
+        str or None
+            Markdown hover text, or ``None`` if nothing relevant was found.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
     """
     lines = content.splitlines()
     if line >= len(lines):
@@ -343,19 +356,21 @@ def hover_info(content: str, line: int, column: int) -> str | None:
 def get_code_actions(uri: str, content: str, diagnostics: list[Diagnostic]) -> list[CodeAction]:
     """Generate code actions for the given diagnostics (#21).
 
-    Parameters
-    ----------
-    uri
-        Document URI.
-    content
-        Full document text.
-    diagnostics
-        LSP diagnostics for which to generate actions.
+        Parameters
+        ----------
+        uri
+            Document URI.
+        content
+            Full document text.
+        diagnostics
+            LSP diagnostics for which to generate actions.
 
-    Returns
-    -------
-    list[CodeAction]
-        Available quick-fix actions.
+        Returns
+        -------
+        list[CodeAction]
+            Available quick-fix actions.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
     """
     actions: list[CodeAction] = []
     lines = content.splitlines()
@@ -468,17 +483,19 @@ def get_code_actions(uri: str, content: str, diagnostics: list[Diagnostic]) -> l
 def get_agent_json(uri: str, content: str) -> dict[str, Any]:
     """Build the agent-facing JSON payload for diagnostics (#11).
 
-    Parameters
-    ----------
-    uri
-        The document URI.
-    content
-        The full document text.
+        Parameters
+        ----------
+        uri
+            The document URI.
+        content
+            The full document text.
 
-    Returns
-    -------
-    dict
-        Agent JSON payload with diagnostics, metadata, and hover context.
+        Returns
+        -------
+        dict
+            Agent JSON payload with diagnostics, metadata, and hover context.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
     """
     # Re-analyze to get analyzer diagnostics for rich serialization
     import tempfile
@@ -527,7 +544,10 @@ def get_agent_json(uri: str, content: str) -> dict[str, Any]:
 
 
 def create_server() -> PyATBServer:
-    """Create and return a :class:`PyATBServer` instance."""
+    """Create and return a :class:`PyATBServer` instance.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
+    """
     return PyATBServer()
 
 
@@ -539,8 +559,10 @@ def create_server() -> PyATBServer:
 class PyATBServer(LanguageServer):
     """Language Server for PyATB workflow scripts.
 
-    Provides diagnostics, formatting, completion, hover, and code actions
-    for Python scripts that use the ``pyatb`` tight-binding library.
+        Provides diagnostics, formatting, completion, hover, and code actions
+        for Python scripts that use the ``pyatb`` tight-binding library.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
     """
 
     def __init__(self) -> None:
@@ -560,16 +582,25 @@ class PyATBServer(LanguageServer):
     # ---- diagnostics (pushed on open / change / save) ----
 
     def _do_diagnose(self, uri: str, content: str) -> None:
-        """Compute and publish diagnostics for a document."""
+        """Compute and publish diagnostics for a document.
+
+        LLM Wiki: wiki/synthesis/openqc-agent-context.md
+        """
         diagnostics = diagnose_document(uri, content)
         self.publish_diagnostics(uri, diagnostics)
 
     def did_open(self, params: DidOpenTextDocumentParams) -> None:
-        """Called when a document is opened in the editor."""
+        """Called when a document is opened in the editor.
+
+        LLM Wiki: wiki/synthesis/openqc-agent-context.md
+        """
         self._do_diagnose(params.text_document.uri, params.text_document.text)
 
     def did_change(self, params: DidChangeTextDocumentParams) -> None:
-        """Called when a document's content changes."""
+        """Called when a document's content changes.
+
+        LLM Wiki: wiki/synthesis/openqc-agent-context.md
+        """
         if params.content_changes:
             content = params.content_changes[-1].text
         else:
@@ -577,7 +608,10 @@ class PyATBServer(LanguageServer):
         self._do_diagnose(params.text_document.uri, content)
 
     def completion(self, params: CompletionParams) -> CompletionList:
-        """Provide completion items based on the current line prefix."""
+        """Provide completion items based on the current line prefix.
+
+        LLM Wiki: wiki/synthesis/openqc-agent-context.md
+        """
         prefix = ""
         try:
             document = self.workspace.get_text_document(params.text_document.uri)
@@ -594,7 +628,10 @@ class PyATBServer(LanguageServer):
         return CompletionList(is_incomplete=False, items=items)
 
     def hover(self, params: HoverParams) -> Hover | None:
-        """Return hover documentation for a symbol in the document."""
+        """Return hover documentation for a symbol in the document.
+
+        LLM Wiki: wiki/synthesis/openqc-agent-context.md
+        """
         try:
             document = self.workspace.get_text_document(params.text_document.uri)
             line = params.position.line
@@ -614,7 +651,10 @@ class PyATBServer(LanguageServer):
             return None
 
     def formatting(self, params: DocumentFormattingParams) -> list[dict[str, object]]:
-        """Format the document using the PyATB safe formatter."""
+        """Format the document using the PyATB safe formatter.
+
+        LLM Wiki: wiki/synthesis/openqc-agent-context.md
+        """
         try:
             document = self.workspace.get_text_document(params.text_document.uri)
             content = document.source
@@ -638,7 +678,10 @@ class PyATBServer(LanguageServer):
         ]
 
     def code_action(self, params: CodeActionParams) -> list[CodeAction]:
-        """Provide code actions for PyATB diagnostics (#21)."""
+        """Provide code actions for PyATB diagnostics (#21).
+
+        LLM Wiki: wiki/synthesis/openqc-agent-context.md
+        """
         try:
             document = self.workspace.get_text_document(params.text_document.uri)
             content = document.source

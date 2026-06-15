@@ -52,7 +52,10 @@ def fmt_main(argv: list[str] | None = None) -> int:
 
 
 def log_main(argv: list[str] | None = None) -> int:
-    """Parse a runtime log file for errors (#22)."""
+    """Parse a runtime log file for errors (#22).
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
+    """
     parser = argparse.ArgumentParser(prog="pyatb-log")
     parser.add_argument("path", type=Path, help="path to log file")
     parser.add_argument("--json", action="store_true")

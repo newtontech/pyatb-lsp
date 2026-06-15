@@ -2,6 +2,8 @@
 
 Provides (#11) Agent JSON capability with full diagnostics payload,
 and (#22) runtime log parser integration.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
 """
 
 from __future__ import annotations
@@ -18,7 +20,10 @@ from .tool import SOFTWARE, _collect_diagnostics, _file_type, check_path
 
 
 class AgentLSP:
-    """Agent-facing wrapper for non-editor LSP diagnostics."""
+    """Agent-facing wrapper for non-editor LSP diagnostics.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
+    """
 
     def __init__(self, text: str | None = None, uri: str = "file:///input") -> None:
         self.text = text
@@ -87,10 +92,12 @@ class AgentLSP:
     def agent_json(self) -> dict[str, Any]:
         """Build the full agent JSON payload (#11).
 
-        Returns
-        -------
-        dict[str, Any]
-            The diagnostic payload with capabilities and rule code metadata.
+                Returns
+                -------
+                dict[str, Any]
+                    The diagnostic payload with capabilities and rule code metadata.
+
+        LLM Wiki: wiki/synthesis/openqc-agent-context.md
         """
         payload = self.check()
         payload["capabilities"] = {
@@ -115,15 +122,17 @@ class AgentLSP:
     def parse_log(self, log_content: str) -> dict[str, Any]:
         """Parse runtime log content for errors (#22).
 
-        Parameters
-        ----------
-        log_content
-            The log file text to parse.
+                Parameters
+                ----------
+                log_content
+                    The log file text to parse.
 
-        Returns
-        -------
-        dict[str, Any]
-            Payload with parsed log diagnostics.
+                Returns
+                -------
+                dict[str, Any]
+                    Payload with parsed log diagnostics.
+
+        LLM Wiki: wiki/synthesis/openqc-agent-context.md
         """
         diagnostics = parse_log_content(log_content, self.uri)
         payload = agent_check_payload(

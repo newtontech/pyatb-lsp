@@ -92,3 +92,7 @@ pyatb-fmt -w input.py
 
 - [LSP Architecture](lsp-architecture.md)
 - [CLI Reference](../synthesis/cli-reference.md)
+
+## Traceability Sources
+
+- Raw evidence: `raw/assets/source-provenance.json`

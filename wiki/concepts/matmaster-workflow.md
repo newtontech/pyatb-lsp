@@ -71,3 +71,7 @@ The LSP emits diagnostics when MatMaster rules are violated:
 
 - [LSP Architecture](lsp-architecture.md)
 - [Diagnostic Contract](diagnostic-contract.md)
+
+## Traceability Sources
+
+- Raw evidence: `raw/assets/source-provenance.json`

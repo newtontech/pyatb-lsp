@@ -66,3 +66,7 @@ Returns stable JSON for automated repair loops.
 
 - [LSP Architecture](lsp-architecture.md)
 - [Agent JSON](agent-json.md)
+
+## Traceability Sources
+
+- Raw evidence: `raw/assets/source-provenance.json`

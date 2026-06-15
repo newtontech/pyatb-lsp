@@ -28,6 +28,8 @@ The diagnostics emitted here are plain dictionaries (not the legacy
 ``Diagnostic`` dataclass) so they can carry the richer ``DiagnosticEnvelope/v1``
 fields (``source_provenance``, ``domain_tags``, ``facts``, ``artifact_roles``,
 ``version_assumption``, ``actions``) directly.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
 """
 
 from __future__ import annotations
@@ -157,10 +159,12 @@ CALCULATION_TO_ENTRYPOINT = {
 class ArtifactNode:
     """A node in the cross-artifact graph.
 
-    ``role`` is one of the fleet-generic roles above; ``path`` is the resolved
-    filesystem path (may be a non-existent reference, which is itself a
-    finding); ``source`` records where the reference originated so consumers
-    can trace provenance.
+        ``role`` is one of the fleet-generic roles above; ``path`` is the resolved
+        filesystem path (may be a non-existent reference, which is itself a
+        finding); ``source`` records where the reference originated so consumers
+        can trace provenance.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
     """
 
     role: str
@@ -173,7 +177,10 @@ class ArtifactNode:
 
 @dataclass
 class ArtifactGraph:
-    """Generic cross-artifact graph built from a parsed case directory."""
+    """Generic cross-artifact graph built from a parsed case directory.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
+    """
 
     case_dir: Path
     nodes: list[ArtifactNode] = field(default_factory=list)
@@ -182,7 +189,10 @@ class ArtifactGraph:
         return [node for node in self.nodes if node.role == role]
 
     def to_json(self) -> list[dict[str, Any]]:
-        """Serialize the graph for the parent probe/report workflow."""
+        """Serialize the graph for the parent probe/report workflow.
+
+        LLM Wiki: wiki/synthesis/openqc-agent-context.md
+        """
 
         def _node_json(node: ArtifactNode) -> dict[str, Any]:
             payload: dict[str, Any] = {
@@ -210,11 +220,13 @@ class ArtifactGraph:
 class ParsedWorkflow:
     """Light view of a parsed PyATB workflow script.
 
-    Captures only what the preflight needs: the primary input path, the set of
-    ``pyatb`` keyword arguments found in the AST, their source line numbers,
-    file-path string literals that reference cross-file artifacts, and any
-    JSON config references (``json.load(open(...))`` patterns). This is kept
-    intentionally narrower than the legacy analyzer's full diagnostic walk.
+        Captures only what the preflight needs: the primary input path, the set of
+        ``pyatb`` keyword arguments found in the AST, their source line numbers,
+        file-path string literals that reference cross-file artifacts, and any
+        JSON config references (``json.load(open(...))`` patterns). This is kept
+        intentionally narrower than the legacy analyzer's full diagnostic walk.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
     """
 
     path: Path
@@ -228,9 +240,11 @@ class ParsedWorkflow:
 def parse_workflow(path: Path) -> ParsedWorkflow:
     """Parse a PyATB workflow script into the narrow preflight view.
 
-    The parser is defensive: any decode/AST failure is captured as a
-    ``syntax_error`` rather than raised, so the preflight graph can still
-    surface a missing-artifact finding for a malformed-but-present script.
+        The parser is defensive: any decode/AST failure is captured as a
+        ``syntax_error`` rather than raised, so the preflight graph can still
+        surface a missing-artifact finding for a malformed-but-present script.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
     """
     try:
         content = path.read_text(encoding="utf-8")
@@ -281,7 +295,10 @@ def _imports_pyatb(tree: ast.AST) -> bool:
 
 
 def _collect_kwargs(tree: ast.AST) -> dict[str, tuple[Any, int]]:
-    """Collect keyword-argument names seen on any call/class instantiation."""
+    """Collect keyword-argument names seen on any call/class instantiation.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
+    """
     out: dict[str, tuple[Any, int]] = {}
     for node in ast.walk(tree):
         if isinstance(node, ast.Call):
@@ -302,11 +319,13 @@ def _literal_value(node: ast.AST) -> Any:
 def _collect_file_literals(tree: ast.AST) -> list[tuple[str, int]]:
     """Collect string literals that look like data-file references.
 
-    A literal is a candidate when its basename carries a known data extension
-    (``.dat``, ``.HR``, ``.SR``, ``.orb``, ``tb_model`` prefix) or matches a
-    recognized tight-binding filename. Pure module paths (containing ``/`` and
-    a ``.py`` suffix) are excluded so import-like strings are not mistaken for
-    data artifacts.
+        A literal is a candidate when its basename carries a known data extension
+        (``.dat``, ``.HR``, ``.SR``, ``.orb``, ``tb_model`` prefix) or matches a
+        recognized tight-binding filename. Pure module paths (containing ``/`` and
+        a ``.py`` suffix) are excluded so import-like strings are not mistaken for
+        data artifacts.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
     """
     data_suffixes = (".dat", ".hr", ".sr", ".orb", ".txt", ".xml")
     tb_prefixes = ("tb_model", "HR", "SR")
@@ -339,12 +358,14 @@ def _collect_file_literals(tree: ast.AST) -> list[tuple[str, int]]:
 def _collect_config_refs(tree: ast.AST) -> list[tuple[str, int]]:
     """Collect JSON config file references.
 
-    PyATB generated inputs reach a JSON config in a few common shapes:
-    ``open("foo.json")``, ``Path("foo.json")``, ``json.load(open("foo.json"))``,
-    and ``pyatb.load_config("foo.json")``. Rather than special-case each, we
-    treat any string-literal call argument ending in ``.json`` as a config
-    reference and surface it so the cross-artifact graph can record a config
-    role node. Module-path imports (``foo/bar.py``) are excluded above.
+        PyATB generated inputs reach a JSON config in a few common shapes:
+        ``open("foo.json")``, ``Path("foo.json")``, ``json.load(open("foo.json"))``,
+        and ``pyatb.load_config("foo.json")``. Rather than special-case each, we
+        treat any string-literal call argument ending in ``.json`` as a config
+        reference and surface it so the cross-artifact graph can record a config
+        role node. Module-path imports (``foo/bar.py``) are excluded above.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
     """
     out: list[tuple[str, int]] = []
     seen: set[str] = set()
@@ -367,9 +388,11 @@ def _collect_config_refs(tree: ast.AST) -> list[tuple[str, int]]:
 def build_artifact_graph(case_dir: Path, workflow: ParsedWorkflow) -> ArtifactGraph:
     """Build the cross-artifact graph from a parsed PyATB case directory.
 
-    The model is generic: it records roles + resolved paths + provenance. The
-    same shape generalizes to other fleet backends because it never bakes in
-    MatMaster/Bohrium runtime concepts (no input_dir, no image, no session).
+        The model is generic: it records roles + resolved paths + provenance. The
+        same shape generalizes to other fleet backends because it never bakes in
+        MatMaster/Bohrium runtime concepts (no input_dir, no image, no session).
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
     """
     case_dir = case_dir.resolve()
     graph = ArtifactGraph(case_dir=case_dir)
@@ -431,7 +454,10 @@ def build_artifact_graph(case_dir: Path, workflow: ParsedWorkflow) -> ArtifactGr
 
 
 def _classify_data_role(filename: str) -> str:
-    """Map a referenced data filename to a fleet-generic artifact role."""
+    """Map a referenced data filename to a fleet-generic artifact role.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
+    """
     name = Path(filename).name
     lower = name.lower()
     if lower.startswith("tb_model") or "tb_model" in lower:
@@ -466,9 +492,11 @@ def preflight_diagnostics(
 ) -> tuple[list[dict[str, Any]], ArtifactGraph]:
     """Run universal generated-input preflight checks.
 
-    Returns a tuple of (diagnostics, artifact_graph). Diagnostics are envelope
-    dicts carrying the full ``DiagnosticEnvelope/v1`` field set so the agent
-    CLI can emit them directly without re-shaping.
+        Returns a tuple of (diagnostics, artifact_graph). Diagnostics are envelope
+        dicts carrying the full ``DiagnosticEnvelope/v1`` field set so the agent
+        CLI can emit them directly without re-shaping.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
     """
     case_dir = case_dir.resolve()
     workflow_path = workflow_path or _locate_workflow(case_dir)
@@ -539,10 +567,12 @@ def preflight_diagnostics(
 def _locate_workflow(case_dir: Path) -> Path | None:
     """Pick the primary-input workflow script for a case directory.
 
-    Prefers ``workflow.py`` then any single ``.py`` file that imports pyatb;
-    falls back to the first ``.py`` file when none imports pyatb so the
-    missing-import finding still has a node to attach to. Returns ``None`` when
-    the directory has no Python file at all.
+        Prefers ``workflow.py`` then any single ``.py`` file that imports pyatb;
+        falls back to the first ``.py`` file when none imports pyatb so the
+        missing-import finding still has a node to attach to. Returns ``None`` when
+        the directory has no Python file at all.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
     """
     py_files = sorted(case_dir.glob("*.py"))
     if not py_files:
@@ -580,11 +610,13 @@ def _diag(
 ) -> dict[str, Any]:
     """Build a single normalized preflight diagnostic.
 
-    Carries every field the issue acceptance criteria require (``code``,
-    ``severity``, ``path``/``range``, ``blocking``, ``category``,
-    ``source_provenance``, ``fix_hints``/``actions``) plus the richer envelope
-    fields (``facts``, ``artifact_roles``, ``domain_tags``,
-    ``version_assumption``) used by the parent fleet probe.
+        Carries every field the issue acceptance criteria require (``code``,
+        ``severity``, ``path``/``range``, ``blocking``, ``category``,
+        ``source_provenance``, ``fix_hints``/``actions``) plus the richer envelope
+        fields (``facts``, ``artifact_roles``, ``domain_tags``,
+        ``version_assumption``) used by the parent fleet probe.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
     """
     line0 = max(line - 1, 0)
     col0 = max(column - 1, 0)
@@ -863,10 +895,12 @@ def _unknown_pyatb_keyword_diagnostics(
 ) -> list[dict[str, Any]]:
     """Flag keyword arguments that are not part of the builtin pyatb schema.
 
-    This is the version-aware-keywords evidence: a kwarg outside the known set
-    is either a typo or an API only present in a newer/older pyatb version,
-    and we surface the exact schema we validated against so the parent probe
-    can branch on the assumption.
+        This is the version-aware-keywords evidence: a kwarg outside the known set
+        is either a typo or an API only present in a newer/older pyatb version,
+        and we surface the exact schema we validated against so the parent probe
+        can branch on the assumption.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
     """
     out: list[dict[str, Any]] = []
     if not workflow.has_pyatb_import:
@@ -915,11 +949,13 @@ def _calculation_keyword_diagnostics(
 ) -> list[dict[str, Any]]:
     """Flag required-but-absent kwargs for a declared pyatb calculation type.
 
-    When ``calculation`` is set to a transport entry point, the corresponding
-    chemical-potential window + kmesh kwargs must be present. This is a real
-    version/capability compatibility finding the parent probe can act on, and
-    it is blocking because a missing kmesh would silently produce wrong
-    results.
+        When ``calculation`` is set to a transport entry point, the corresponding
+        chemical-potential window + kmesh kwargs must be present. This is a real
+        version/capability compatibility finding the parent probe can act on, and
+        it is blocking because a missing kmesh would silently produce wrong
+        results.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
     """
     out: list[dict[str, Any]] = []
     calc_entry = workflow.kwargs.get("calculation")
@@ -987,10 +1023,12 @@ def _kpath_coarse_diagnostics(
 ) -> list[dict[str, Any]]:
     """Warn on suspiciously coarse k-path / kmesh declarations.
 
-    PyATB transport/optical calculations depend on a dense k-sampling; a
-    ``boltz_kmesh`` / ``wboltz_kmesh`` of 1 (Gamma-only) or an ``nkpt`` of 1
-    is almost always a user mistake. This is a runtime-risk warning rather
-    than a hard block.
+        PyATB transport/optical calculations depend on a dense k-sampling; a
+        ``boltz_kmesh`` / ``wboltz_kmesh`` of 1 (Gamma-only) or an ``nkpt`` of 1
+        is almost always a user mistake. This is a runtime-risk warning rather
+        than a hard block.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
     """
     out: list[dict[str, Any]] = []
     if not workflow.has_pyatb_import:
@@ -1047,7 +1085,10 @@ def _kpath_coarse_diagnostics(
 
 
 def _coerce_mesh(value: Any) -> tuple[int, ...] | None:
-    """Coerce a kwarg value into an integer mesh tuple, if possible."""
+    """Coerce a kwarg value into an integer mesh tuple, if possible.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
+    """
     if isinstance(value, bool):
         return None
     if isinstance(value, int):
@@ -1079,11 +1120,13 @@ def _coerce_mesh(value: Any) -> tuple[int, ...] | None:
 def resolve_version_assumption(intent: dict[str, Any] | None) -> dict[str, Any]:
     """Resolve the explicit runtime/version assumption for this preflight run.
 
-    When the exact runtime/image version is unknown we record that fact
-    explicitly rather than guessing, per the issue's version-assumptions
-    acceptance criterion. The intent contract can override ``software_version``
-    (e.g. ``pyatb >=1.3.3``); otherwise we fall back to the schema version the
-    builtin keyword set was authored against.
+        When the exact runtime/image version is unknown we record that fact
+        explicitly rather than guessing, per the issue's version-assumptions
+        acceptance criterion. The intent contract can override ``software_version``
+        (e.g. ``pyatb >=1.3.3``); otherwise we fall back to the schema version the
+        builtin keyword set was authored against.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
     """
     intent = intent or {}
     software_version = intent.get("software_version")
@@ -1109,9 +1152,11 @@ def _version_assumption_diagnostic(
 ) -> list[dict[str, Any]]:
     """Emit an explicit information diagnostic when the runtime version is unknown.
 
-    This makes the version assumption machine-readable in the diagnostic stream
-    itself (not just metadata) so the parent probe can surface it without
-    parsing the envelope top-level.
+        This makes the version assumption machine-readable in the diagnostic stream
+        itself (not just metadata) so the parent probe can surface it without
+        parsing the envelope top-level.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
     """
     if version_assumption["exact_runtime_known"]:
         return []
@@ -1158,10 +1203,12 @@ def fleet_manifest(
 ) -> dict[str, Any]:
     """Return a machine-readable preflight manifest for the parent fleet.
 
-    The parent ``bohrium_skills`` probe/report workflow consumes this to know
-    which preflight codes exist, which capabilities are implemented, and which
-    fixtures exercise them. Keeping it as data (not README prose) means the
-    fleet regression evidence stays in sync with the implementation.
+        The parent ``bohrium_skills`` probe/report workflow consumes this to know
+        which preflight codes exist, which capabilities are implemented, and which
+        fixtures exercise them. Keeping it as data (not README prose) means the
+        fleet regression evidence stays in sync with the implementation.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
     """
     codes = {
         CODE_MISSING_ARTIFACT: {

@@ -94,3 +94,7 @@ LSP 在适当位置插入代码操作：
 
 - [Diagnostic Codes](diagnostic-codes.md)
 - [LSP Architecture](../concepts/lsp-architecture.md)
+
+## Traceability Sources
+
+- Raw evidence: `raw/assets/source-provenance.json`
