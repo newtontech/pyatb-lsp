@@ -10,7 +10,7 @@ entrypoints:
   server: pyatb-lsp
   tool: pyatb-lsp-tool
 file_patterns:
-  - *.pyatb.py
+  - "*.pyatb.py"
   - run_pyatb.py
 operations:
   - capabilities
