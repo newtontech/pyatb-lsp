@@ -1,4 +1,7 @@
-"""Offline PyATB rule/provenance index derived from official documentation."""
+"""Offline PyATB rule/provenance index derived from official documentation.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
 
 from __future__ import annotations
 

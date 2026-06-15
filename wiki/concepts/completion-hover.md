@@ -100,3 +100,7 @@ LSP 为 Python 内置提供有限的悬停：
 
 - [LSP Architecture](lsp-architecture.md)
 - [TightBinding Class](../entities/tightbinding.md)
+
+## Traceability Sources
+
+- Raw evidence: `raw/assets/source-provenance.json`

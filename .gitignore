@@ -8,4 +8,5 @@ dist/
 build/
 *.egg-info/
 uv.lock
-reports/
+reports/*
+!reports/docstring-wiki-raw-traceability.json

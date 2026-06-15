@@ -152,3 +152,7 @@ FERMI_ENERGY
     epsilon                1e-4
 }
 ```
+
+## Traceability Sources
+
+- Raw evidence: `raw/assets/source-provenance.json`

@@ -89,3 +89,7 @@ For backward compatibility, legacy codes are emitted alongside new codes:
 
 - [Diagnostic Codes](diagnostic-codes.md)
 - [MatMaster Workflow](../concepts/matmaster-workflow.md)
+
+## Traceability Sources
+
+- Raw evidence: `raw/assets/source-provenance.json`

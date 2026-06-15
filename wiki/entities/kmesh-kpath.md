@@ -55,3 +55,7 @@ LSP 提供：
 
 - [TightBinding Class](tightbinding.md)
 - [Output Configuration](output-config.md)
+
+## Traceability Sources
+
+- Raw evidence: `raw/assets/source-provenance.json`

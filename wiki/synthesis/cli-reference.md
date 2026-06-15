@@ -99,3 +99,7 @@ make check     # All checks
 
 - [LSP Architecture](../concepts/lsp-architecture.md)
 - [Agent JSON](../concepts/agent-json.md)
+
+## Traceability Sources
+
+- Raw evidence: `raw/assets/source-provenance.json`

@@ -2,6 +2,8 @@
 
 Supports: check, preflight, manifest, context, complete, hover, symbols, fix,
 parse-log, agent-json.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
 """
 
 from __future__ import annotations
@@ -75,9 +77,11 @@ def _collect_diagnostics(path: Path) -> list[Any]:
 def _load_intent(path: Path) -> dict[str, Any] | None:
     """Load the optional preflight intent contract for a case directory.
 
-    The intent contract is the only place preflight policy overrides live
-    (e.g. ``software_version``, ``runtime_image``, ``kpath_warning_density``).
-    It is a workspace-local artifact, never a MatMaster/Bohrium runtime concept.
+        The intent contract is the only place preflight policy overrides live
+        (e.g. ``software_version``, ``runtime_image``, ``kpath_warning_density``).
+        It is a workspace-local artifact, never a MatMaster/Bohrium runtime concept.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
     """
     case_dir = path if path.is_dir() else path.parent
     intent_path = case_dir / INTENT_DIR / "intent.json"
@@ -93,9 +97,11 @@ def _load_intent(path: Path) -> dict[str, Any] | None:
 def _looks_like_workspace(case_dir: Path) -> bool:
     """True when a directory is a real generated-input workspace.
 
-    Preflight needs at least one Python workflow script that drives the pyatb
-    library to build a meaningful cross-artifact graph; a directory with no
-    ``.py`` file falls back to the legacy single-file lint path.
+        Preflight needs at least one Python workflow script that drives the pyatb
+        library to build a meaningful cross-artifact graph; a directory with no
+        ``.py`` file falls back to the legacy single-file lint path.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
     """
     if not case_dir.is_dir():
         return False
@@ -126,8 +132,10 @@ def _collect_preflight(
 ) -> tuple[list[Any], list[dict[str, Any]], dict[str, Any]]:
     """Return (preflight_diagnostics, artifact_graph, version_assumption).
 
-    Imported lazily so callers that never touch preflight (e.g. single-file
-    LSP hover) pay no import cost.
+        Imported lazily so callers that never touch preflight (e.g. single-file
+        LSP hover) pay no import cost.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
     """
     from .preflight import preflight_diagnostics, resolve_version_assumption
 
@@ -176,7 +184,10 @@ _OVERLAP_CODES_BY_LEGACY = {
 
 
 def _dedupe_preflight(legacy: list[Any], preflight: list[Any]) -> list[Any]:
-    """Drop preflight diagnostics whose finding the legacy analyzer already emitted."""
+    """Drop preflight diagnostics whose finding the legacy analyzer already emitted.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
+    """
     emitted_legacy = {
         getattr(item, "code", None) or (item.get("code") if isinstance(item, dict) else None)
         for item in legacy
@@ -193,7 +204,10 @@ def _dedupe_preflight(legacy: list[Any], preflight: list[Any]) -> list[Any]:
 
 
 def preflight_path(path: Path) -> dict[str, Any]:
-    """Return a preflight-only payload (universal checks, no legacy analyzer)."""
+    """Return a preflight-only payload (universal checks, no legacy analyzer).
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
+    """
     from .preflight import preflight_diagnostics, resolve_version_assumption
 
     intent = _load_intent(path)
@@ -217,9 +231,11 @@ def preflight_path(path: Path) -> dict[str, Any]:
 def manifest_path(path: Path | None = None) -> dict[str, Any]:
     """Return the fleet preflight manifest.
 
-    When ``path`` is given, fixture expectations declared in
-    ``.pyatb-lsp/fixtures.json`` are merged in so the parent probe can confirm
-    a case directory exercises the documented codes.
+        When ``path`` is given, fixture expectations declared in
+        ``.pyatb-lsp/fixtures.json`` are merged in so the parent probe can confirm
+        a case directory exercises the documented codes.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
     """
     from .preflight import fleet_manifest
 
@@ -257,7 +273,10 @@ def _operation_payload(
 
 
 def _parse_log(path: Path) -> dict[str, Any]:
-    """Parse a log file for runtime errors (#22)."""
+    """Parse a log file for runtime errors (#22).
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
+    """
     from .analyzer import parse_log_content
 
     try:
@@ -279,9 +298,11 @@ def _parse_log(path: Path) -> dict[str, Any]:
 def _fix_path(path: Path) -> dict[str, Any]:
     """Generate fix previews for diagnostics on the given path (#40).
 
-    Returns a DiagnosticEnvelope/v1 payload with ``fix_preview`` entries
-    attached to each diagnostic that has a suggested_fix.  Safe-to-apply
-    fixes are flagged so agents can auto-apply them.
+        Returns a DiagnosticEnvelope/v1 payload with ``fix_preview`` entries
+        attached to each diagnostic that has a suggested_fix.  Safe-to-apply
+        fixes are flagged so agents can auto-apply them.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
     """
     from .fix_preview import generate_fix_preview
     from .rich_diagnostics import serialize_diagnostics
@@ -327,7 +348,10 @@ def _fix_path(path: Path) -> dict[str, Any]:
 
 
 def _agent_json(path: Path) -> dict[str, Any]:
-    """Build the full agent JSON payload (#11)."""
+    """Build the full agent JSON payload (#11).
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
+    """
     payload = check_path(path)
     payload["capabilities"] = {
         "hover": True,

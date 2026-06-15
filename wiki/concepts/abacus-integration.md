@@ -57,3 +57,7 @@ Copy the lattice vectors from the ABACUS STRU file or the running log. The latti
 6. Run: mpirun -np N pyatb
 7. Check Out/ directory for results
 ```
+
+## Traceability Sources
+
+- Raw evidence: `raw/assets/source-provenance.json`

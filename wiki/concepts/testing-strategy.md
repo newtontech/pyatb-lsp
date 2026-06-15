@@ -106,3 +106,7 @@ def test_server_did_open():
 
 - [CLI Reference](../synthesis/cli-reference.md)
 - [Validation Rules](../synthesis/validation-rules.md)
+
+## Traceability Sources
+
+- Raw evidence: `raw/assets/source-provenance.json`
