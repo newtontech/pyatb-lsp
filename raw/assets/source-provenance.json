@@ -1,0 +1,66 @@
+{
+  "fetched_at": "2026-06-15T09:22:49+00:00",
+  "local_asset_count": 13,
+  "rule_index": "src/pyatb_lsp/schema/pyatb_rules.json",
+  "schema": "SourceProvenance/v1",
+  "sources": [
+    {
+      "id": "pyatb-official-docs",
+      "kind": "official_docs",
+      "label": "PyATB documentation",
+      "license": "see upstream PyATB repository",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "url": "https://pyatb.github.io/pyatb/"
+    },
+    {
+      "id": "pyatb-input-reference",
+      "kind": "local_mirror",
+      "label": "PyATB input reference",
+      "path": "raw/assets/pyatb-input-reference.md",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "a52bd2f3ecee6d229a97298f4dbd2362de70dd99df4e2e0ddfcce216cc993518",
+      "size_bytes": 16631,
+      "upstream_url": "https://pyatb.github.io/pyatb/user_guide/input.html"
+    },
+    {
+      "id": "pyatb-examples",
+      "kind": "local_mirror",
+      "label": "PyATB examples",
+      "path": "raw/assets/pyatb-examples.md",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "1208e585c1854c1297606ca4b72f331b2a85d9e0480f81b4d1c16a3733b001ca",
+      "size_bytes": 15950,
+      "upstream_url": "https://pyatb.github.io/pyatb/user_guide/examples.html"
+    },
+    {
+      "id": "pyatb-abacus-integration",
+      "kind": "local_mirror",
+      "label": "PyATB ABACUS integration",
+      "path": "raw/assets/pyatb-abacus-integration.md",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "84535d068c0ac1966941c6fa6cf468e5100489eccd50ce510d2ca659aaa65c5f",
+      "size_bytes": 4113,
+      "upstream_url": "https://pyatb.github.io/pyatb/user_guide/abacus.html"
+    },
+    {
+      "id": "pyatb-transport-implementation",
+      "kind": "local_mirror",
+      "label": "PyATB transport implementation notes",
+      "path": "raw/assets/pyatb-transport-implementation.md",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "729caf07e273003ba1d7401094cd5a4e02ef9f8dcb38c6344249ef2c467a9b8c",
+      "size_bytes": 5028,
+      "upstream_url": "https://pyatb.github.io/pyatb/"
+    },
+    {
+      "id": "pyatb-lsp-diagnostic-engine",
+      "kind": "repo_contract",
+      "label": "Diagnostic Engine v1 contract",
+      "path": "raw/assets/DIAGNOSTIC_ENGINE_V1.md",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "11f7a7c6fa42a3411a5801eb79b36c8b39b6021a19021547c85d0e3b7eaa59dd",
+      "size_bytes": 1928
+    }
+  ],
+  "wiki_page_count": 29
+}
