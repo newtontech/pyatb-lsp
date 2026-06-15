@@ -113,7 +113,7 @@ def operation_path(
         return with_capabilities(payload, operation, status=status, reason=reason)
 
     if operation == "fix":
-        actions = _fix_actions(payload["diagnostics"], line=line, character=character)
+        actions = _fix_actions(payload["diagnostics"], line=line, character=character, path=path)
         payload["actions"] = actions
         status = "available" if actions else "unavailable"
         reason = (
@@ -366,28 +366,53 @@ def _diagnostic_hover(diagnostics: list[dict[str, Any]], line: int, character: i
 
 
 def _fix_actions(
-    diagnostics: list[dict[str, Any]], *, line: int, character: int
+    diagnostics: list[dict[str, Any]], *, line: int, character: int, path: Path | None = None
 ) -> list[dict[str, Any]]:
     selected = _diagnostics_at_position(diagnostics, line, character) or diagnostics
     actions: list[dict[str, Any]] = []
+
+    try:
+        from .fix_preview import generate_fix_preview
+    except ImportError:
+        generate_fix_preview = None  # type: ignore[assignment]
+
+    content = ""
+    if path is not None:
+        content = _read_text(path)
+
     for diagnostic in selected:
         hints = diagnostic.get("fix_hints") or []
         if not hints:
             hints = ["Review this diagnostic before running the calculation."]
+
+        fix_preview = None
+        if generate_fix_preview is not None and path is not None:
+            suggested_fix = diagnostic.get("fix_hints", [{}])
+            if suggested_fix and isinstance(suggested_fix[0], dict):
+                fix_preview = generate_fix_preview(
+                    path, content, diagnostic.get("code", ""), suggested_fix[0]
+                )
+
         for index, hint in enumerate(hints[:5]):
-            actions.append(
-                {
-                    "title": str(hint),
-                    "kind": "quickfix",
-                    "diagnostic_code": diagnostic.get("code"),
-                    "diagnostic_range": diagnostic.get("range"),
-                    "confidence": diagnostic.get("confidence", 1.0),
-                    "blocking": bool(diagnostic.get("blocking", False)),
-                    "safe_to_auto_apply": False,
-                    "edit": None,
-                    "data": {"hint_index": index, "source": diagnostic.get("source")},
-                }
-            )
+            action: dict[str, Any] = {
+                "title": str(hint),
+                "kind": "quickfix",
+                "diagnostic_code": diagnostic.get("code"),
+                "diagnostic_range": diagnostic.get("range"),
+                "confidence": diagnostic.get("confidence", 1.0),
+                "blocking": bool(diagnostic.get("blocking", False)),
+                "safe_to_auto_apply": False,
+                "edit": None,
+                "data": {"hint_index": index, "source": diagnostic.get("source")},
+            }
+
+            if fix_preview is not None and index == 0:
+                action["edit"] = fix_preview.get("edit")
+                action["safe_to_auto_apply"] = fix_preview.get("safe_to_auto_apply", False)
+                if "reason" in fix_preview:
+                    action["data"]["reason"] = fix_preview["reason"]
+
+            actions.append(action)
     return actions
 
 
