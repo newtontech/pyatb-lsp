@@ -1,0 +1,325 @@
+{
+  "fetched_at": "2026-06-15T09:22:49+00:00",
+  "local_assets": [
+    {
+      "id": "raw-assets-DIAGNOSTIC_ENGINE_V1-md",
+      "kind": "local_mirror",
+      "path": "raw/assets/DIAGNOSTIC_ENGINE_V1.md",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "11f7a7c6fa42a3411a5801eb79b36c8b39b6021a19021547c85d0e3b7eaa59dd",
+      "size_bytes": 1928
+    },
+    {
+      "id": "raw-assets-README-md",
+      "kind": "local_mirror",
+      "path": "raw/assets/README.md",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "35599aa906db475dc070b05ed4f4687a20c8ccc801ed96d51afc14a23b59b815",
+      "size_bytes": 1131
+    },
+    {
+      "id": "raw-assets-analyzer-py",
+      "kind": "local_mirror",
+      "path": "raw/assets/analyzer.py",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "d2e7318bc215cb868dbcd6f75c0317466039c3f83badd2878015daf62ba7c7d6",
+      "size_bytes": 23259
+    },
+    {
+      "id": "raw-assets-complete_valid-py",
+      "kind": "local_mirror",
+      "path": "raw/assets/complete_valid.py",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "d10ccb114ff409ed8a741105d58df0e35b3605164d94726da937a1deff5c82e6",
+      "size_bytes": 201
+    },
+    {
+      "id": "raw-assets-pyatb-abacus-integration-md",
+      "kind": "local_mirror",
+      "path": "raw/assets/pyatb-abacus-integration.md",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "84535d068c0ac1966941c6fa6cf468e5100489eccd50ce510d2ca659aaa65c5f",
+      "size_bytes": 4113
+    },
+    {
+      "id": "raw-assets-pyatb-examples-md",
+      "kind": "local_mirror",
+      "path": "raw/assets/pyatb-examples.md",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "1208e585c1854c1297606ca4b72f331b2a85d9e0480f81b4d1c16a3733b001ca",
+      "size_bytes": 15950
+    },
+    {
+      "id": "raw-assets-pyatb-input-reference-md",
+      "kind": "local_mirror",
+      "path": "raw/assets/pyatb-input-reference.md",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "a52bd2f3ecee6d229a97298f4dbd2362de70dd99df4e2e0ddfcce216cc993518",
+      "size_bytes": 16631
+    },
+    {
+      "id": "raw-assets-pyatb-introduction-md",
+      "kind": "local_mirror",
+      "path": "raw/assets/pyatb-introduction.md",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "05038a94ffaff8197982d4505c3e2a40e3857568b81c7376d1b7af694146d499",
+      "size_bytes": 4680
+    },
+    {
+      "id": "raw-assets-pyatb-readme-md",
+      "kind": "local_mirror",
+      "path": "raw/assets/pyatb-readme.md",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "1c402f5adc345b32f55f8cd14874d8950c42e9ef1cbae91e801064c5325f6df3",
+      "size_bytes": 3487
+    },
+    {
+      "id": "raw-assets-pyatb-related-tools-md",
+      "kind": "local_mirror",
+      "path": "raw/assets/pyatb-related-tools.md",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "161ceff8a4b390a94db8408a8d887c7ed2e89fee40423460fbcf5c63666cb363",
+      "size_bytes": 3287
+    },
+    {
+      "id": "raw-assets-pyatb-theory-md",
+      "kind": "local_mirror",
+      "path": "raw/assets/pyatb-theory.md",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "5cdec39f7a6be6da87e02e703ac5178f566225e71f5ffc35663aa3abadcfb032",
+      "size_bytes": 6011
+    },
+    {
+      "id": "raw-assets-pyatb-transport-implementation-md",
+      "kind": "local_mirror",
+      "path": "raw/assets/pyatb-transport-implementation.md",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "729caf07e273003ba1d7401094cd5a4e02ef9f8dcb38c6344249ef2c467a9b8c",
+      "size_bytes": 5028
+    },
+    {
+      "id": "raw-assets-server-py",
+      "kind": "local_mirror",
+      "path": "raw/assets/server.py",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "2da119b3f0e31a12e7794ae099345393a90a42d15a072f6eefa8d7b3d5b5fa89",
+      "size_bytes": 21893
+    }
+  ],
+  "pipeline": [
+    "official-docs-fetch",
+    "raw-assets-index",
+    "wiki-entities",
+    "structured-schema-rules",
+    "source-provenance",
+    "tests",
+    "lsp-runtime"
+  ],
+  "remote_snapshots": [],
+  "schema": "PyatbOfficialDocsSnapshot/v1",
+  "wiki_pages": [
+    {
+      "id": "wiki-concepts-abacus-integration-md",
+      "kind": "wiki_page",
+      "path": "wiki/concepts/abacus-integration.md",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "bbc07ae41b1a071d6e51ce0f8453695699877eff3144d53d121141385951decc"
+    },
+    {
+      "id": "wiki-concepts-agent-json-md",
+      "kind": "wiki_page",
+      "path": "wiki/concepts/agent-json.md",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "28d38753824a7f7ae23362da12ad9fe7542f3c897290ca0c0d67278ff09bc59c"
+    },
+    {
+      "id": "wiki-concepts-berry-phase-geometry-md",
+      "kind": "wiki_page",
+      "path": "wiki/concepts/berry-phase-geometry.md",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "41f4c8a762efae8ba19689144cda089ced79cc007025c9cf810df7b957adbbf7"
+    },
+    {
+      "id": "wiki-concepts-boltzmann-transport-md",
+      "kind": "wiki_page",
+      "path": "wiki/concepts/boltzmann-transport.md",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "4040d78fe057ea2b76c019628d99757b39407c752049472af727a3fa86af0f32"
+    },
+    {
+      "id": "wiki-concepts-completion-hover-md",
+      "kind": "wiki_page",
+      "path": "wiki/concepts/completion-hover.md",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "c8c41d470852bdc6151ff366fac4dfc179af502b4a361c277d72559278173d4c"
+    },
+    {
+      "id": "wiki-concepts-diagnostic-contract-md",
+      "kind": "wiki_page",
+      "path": "wiki/concepts/diagnostic-contract.md",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "c8af2ce48515c1d0ee1be42cbe810f4c82b652036e74d1b3c8422a74d9c848b1"
+    },
+    {
+      "id": "wiki-concepts-diagnostic-engine-v1-md",
+      "kind": "wiki_page",
+      "path": "wiki/concepts/diagnostic-engine-v1.md",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "62607fb6bc793ef10a35aa0ded1509f9f53adb97abdd9bc146b1fe6eda19a689"
+    },
+    {
+      "id": "wiki-concepts-formatter-design-md",
+      "kind": "wiki_page",
+      "path": "wiki/concepts/formatter-design.md",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "c70f84643709cebb4a945140f55fffeb673e86a333e30d51e350d59b652bbcb9"
+    },
+    {
+      "id": "wiki-concepts-input-file-format-md",
+      "kind": "wiki_page",
+      "path": "wiki/concepts/input-file-format.md",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "a9c711da9dec50f2b79f8b605b7343cce141ba424f7e1221738b0eadb054dea3"
+    },
+    {
+      "id": "wiki-concepts-lsp-architecture-md",
+      "kind": "wiki_page",
+      "path": "wiki/concepts/lsp-architecture.md",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "d7cb2aec699ad22f8140d415325323c245a02d45fc09c23f5396ccd72117acbe"
+    },
+    {
+      "id": "wiki-concepts-matmaster-workflow-md",
+      "kind": "wiki_page",
+      "path": "wiki/concepts/matmaster-workflow.md",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "d93927fde9ed99ec3cfd8bb32292bac4a2f9204f319ab08cbe072aba0618ac9e"
+    },
+    {
+      "id": "wiki-concepts-testing-strategy-md",
+      "kind": "wiki_page",
+      "path": "wiki/concepts/testing-strategy.md",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "899c4336ef0f3e28a9cb66288ad0f1ee8527c813ad76387a89bee6953c69c6a9"
+    },
+    {
+      "id": "wiki-entities-band-dos-md",
+      "kind": "wiki_page",
+      "path": "wiki/entities/band-dos.md",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "326c41eff7464ef328dc032ae53bc1d601ad6453da27fcd9bd5d03118cbdb449"
+    },
+    {
+      "id": "wiki-entities-conductivity-spin-md",
+      "kind": "wiki_page",
+      "path": "wiki/entities/conductivity-spin.md",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "d5e8df6a96eafef2dd9ede992507968ec993723bc62dc38f87ac3a8c262e7c0f"
+    },
+    {
+      "id": "wiki-entities-hr-sr-files-md",
+      "kind": "wiki_page",
+      "path": "wiki/entities/hr-sr-files.md",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "5a12ee7963e0d5d43baeac0662f412e0c04086178797dcc2374800d89a5b8531"
+    },
+    {
+      "id": "wiki-entities-kmesh-kpath-md",
+      "kind": "wiki_page",
+      "path": "wiki/entities/kmesh-kpath.md",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "02a96b693593840df4ef8251162c6042df59ac2292cc5a6a93e10d8b5db45865"
+    },
+    {
+      "id": "wiki-entities-output-config-md",
+      "kind": "wiki_page",
+      "path": "wiki/entities/output-config.md",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "f90c8abc7f5905f21c285aeb6a08cab4f45c65e5d08615a30465c0389abd93fe"
+    },
+    {
+      "id": "wiki-entities-pyatb-package-md",
+      "kind": "wiki_page",
+      "path": "wiki/entities/pyatb-package.md",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "342187f8c3a575e71fd5c751d794f71da402fb3272ed1d6524180fb3f6d23a09"
+    },
+    {
+      "id": "wiki-entities-tightbinding-md",
+      "kind": "wiki_page",
+      "path": "wiki/entities/tightbinding.md",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "2b13a021fa5b89d162e582cf5963ecd50ba53f1d230152ecf0425d3e134c0732"
+    },
+    {
+      "id": "wiki-index-md",
+      "kind": "wiki_page",
+      "path": "wiki/index.md",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "0e0b30224c68534b0ec2b6c870bf828186e6b26581ad5c8ae3d4918dd375adb7"
+    },
+    {
+      "id": "wiki-log-md",
+      "kind": "wiki_page",
+      "path": "wiki/log.md",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "87a6ce88b0dae74de3511afe9f1860488d04bd276e7c70f55c027363f3a155be"
+    },
+    {
+      "id": "wiki-synthesis-cli-reference-md",
+      "kind": "wiki_page",
+      "path": "wiki/synthesis/cli-reference.md",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "b976cb18b4abbf5e72303e503902fe22e08b720350cb6c9184f880f21fba895b"
+    },
+    {
+      "id": "wiki-synthesis-code-actions-md",
+      "kind": "wiki_page",
+      "path": "wiki/synthesis/code-actions.md",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "90e81d790afe864cab6434a435bcb12fd7b27208660fb4ebee10dda60be4a216"
+    },
+    {
+      "id": "wiki-synthesis-diagnostic-codes-md",
+      "kind": "wiki_page",
+      "path": "wiki/synthesis/diagnostic-codes.md",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "75f5583788f0240a5801b45d813edb35d7338c288808eaeeb3e2ead76c80437d"
+    },
+    {
+      "id": "wiki-synthesis-log-parser-md",
+      "kind": "wiki_page",
+      "path": "wiki/synthesis/log-parser.md",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "6af8553f7951c8b002532a08c361a4fe0287e105cf4b82759b87646b5cde3c14"
+    },
+    {
+      "id": "wiki-synthesis-openqc-agent-context-md",
+      "kind": "wiki_page",
+      "path": "wiki/synthesis/openqc-agent-context.md",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "038558ebb8fae1484fa466cbc7b82d1eef25041c18fe4966ac4d19507e6d82d5"
+    },
+    {
+      "id": "wiki-synthesis-quickstart-md",
+      "kind": "wiki_page",
+      "path": "wiki/synthesis/quickstart.md",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "1a9a2c36501872bb021c4e21cd7c6a273d8f52ed3341baaf97a6ecb503b63b8e"
+    },
+    {
+      "id": "wiki-synthesis-transport-coefficient-guide-md",
+      "kind": "wiki_page",
+      "path": "wiki/synthesis/transport-coefficient-guide.md",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "3791e65bdb11466edda0e23f44934487882a169f35b55cc529b3ff9067ef6340"
+    },
+    {
+      "id": "wiki-synthesis-validation-rules-md",
+      "kind": "wiki_page",
+      "path": "wiki/synthesis/validation-rules.md",
+      "retrieved_at": "2026-06-15T09:22:49+00:00",
+      "sha256": "2c2c41e7e65303437991f9c1e90d9882c03f4003f61179659a4bce70df9a3eac"
+    }
+  ]
+}

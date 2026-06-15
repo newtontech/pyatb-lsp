@@ -87,9 +87,56 @@
   },
   "sourceProvenance": [
     {
+      "id": "pyatb-official-docs",
       "kind": "official_docs",
       "label": "PyATB documentation",
-      "url": "https://pyatb.github.io/pyatb/"
+      "url": "https://pyatb.github.io/pyatb/",
+      "license": "see upstream PyATB repository"
+    },
+    {
+      "id": "pyatb-input-reference",
+      "kind": "local_mirror",
+      "label": "PyATB input reference",
+      "path": "raw/assets/pyatb-input-reference.md",
+      "upstream_url": "https://pyatb.github.io/pyatb/user_guide/input.html"
+    },
+    {
+      "id": "pyatb-examples",
+      "kind": "local_mirror",
+      "label": "PyATB examples",
+      "path": "raw/assets/pyatb-examples.md",
+      "upstream_url": "https://pyatb.github.io/pyatb/user_guide/examples.html"
+    },
+    {
+      "id": "pyatb-abacus-integration",
+      "kind": "local_mirror",
+      "label": "PyATB ABACUS integration",
+      "path": "raw/assets/pyatb-abacus-integration.md",
+      "upstream_url": "https://pyatb.github.io/pyatb/user_guide/abacus.html"
+    },
+    {
+      "id": "pyatb-transport-implementation",
+      "kind": "local_mirror",
+      "label": "PyATB transport implementation notes",
+      "path": "raw/assets/pyatb-transport-implementation.md",
+      "upstream_url": "https://pyatb.github.io/pyatb/"
+    },
+    {
+      "id": "pyatb-lsp-diagnostic-engine",
+      "kind": "repo_contract",
+      "label": "Diagnostic Engine v1 contract",
+      "path": "raw/assets/DIAGNOSTIC_ENGINE_V1.md"
     }
-  ]
+  ],
+  "pipeline": [
+    "official-docs-fetch",
+    "raw-assets-index",
+    "wiki-entities",
+    "structured-schema-rules",
+    "source-provenance",
+    "tests",
+    "lsp-runtime"
+  ],
+  "ruleIndex": "src/pyatb_lsp/schema/pyatb_rules.json",
+  "provenanceUpdatedAt": "2026-06-15T09:22:49+00:00"
 }

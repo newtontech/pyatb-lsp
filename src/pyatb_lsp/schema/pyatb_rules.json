@@ -1,0 +1,141 @@
+{
+  "schema": "PyatbRuleIndex/v1",
+  "pipeline": [
+    "official-docs-fetch",
+    "raw-assets-index",
+    "wiki-entities",
+    "structured-schema-rules",
+    "source-provenance",
+    "tests",
+    "lsp-runtime"
+  ],
+  "sourceProvenance": [
+    {
+      "id": "pyatb-official-docs",
+      "kind": "official_docs",
+      "label": "PyATB documentation",
+      "url": "https://pyatb.github.io/pyatb/",
+      "license": "see upstream PyATB repository"
+    },
+    {
+      "id": "pyatb-input-reference",
+      "kind": "local_mirror",
+      "label": "PyATB input reference",
+      "path": "raw/assets/pyatb-input-reference.md",
+      "upstream_url": "https://pyatb.github.io/pyatb/user_guide/input.html"
+    },
+    {
+      "id": "pyatb-examples",
+      "kind": "local_mirror",
+      "label": "PyATB examples",
+      "path": "raw/assets/pyatb-examples.md",
+      "upstream_url": "https://pyatb.github.io/pyatb/user_guide/examples.html"
+    },
+    {
+      "id": "pyatb-abacus-integration",
+      "kind": "local_mirror",
+      "label": "PyATB ABACUS integration",
+      "path": "raw/assets/pyatb-abacus-integration.md",
+      "upstream_url": "https://pyatb.github.io/pyatb/user_guide/abacus.html"
+    },
+    {
+      "id": "pyatb-transport-implementation",
+      "kind": "local_mirror",
+      "label": "PyATB transport implementation notes",
+      "path": "raw/assets/pyatb-transport-implementation.md",
+      "upstream_url": "https://pyatb.github.io/pyatb/"
+    },
+    {
+      "id": "pyatb-lsp-diagnostic-engine",
+      "kind": "repo_contract",
+      "label": "Diagnostic Engine v1 contract",
+      "path": "raw/assets/DIAGNOSTIC_ENGINE_V1.md"
+    }
+  ],
+  "diagnosticRules": {
+    "PYATB601": {
+      "wiki_ref": "wiki/synthesis/diagnostic-codes.md",
+      "source_id": "pyatb-official-docs",
+      "severity": "error",
+      "blocking": true,
+      "summary": "primary-input workflow script missing"
+    },
+    "PYATB602": {
+      "wiki_ref": "wiki/entities/hr-sr-files.md",
+      "source_id": "pyatb-input-reference",
+      "severity": "error",
+      "blocking": true,
+      "summary": "tb-hamiltonian artifact missing"
+    },
+    "PYATB603": {
+      "wiki_ref": "wiki/entities/hr-sr-files.md",
+      "source_id": "pyatb-input-reference",
+      "severity": "warning",
+      "blocking": false,
+      "summary": "referenced artifact cannot be resolved"
+    },
+    "PYATB604": {
+      "wiki_ref": "wiki/entities/output-config.md",
+      "source_id": "pyatb-input-reference",
+      "severity": "error",
+      "blocking": true,
+      "summary": "referenced JSON config is invalid"
+    },
+    "PYATB605": {
+      "wiki_ref": "wiki/entities/tightbinding.md",
+      "source_id": "pyatb-input-reference",
+      "severity": "warning",
+      "blocking": false,
+      "summary": "unknown pyatb keyword"
+    },
+    "PYATB606": {
+      "wiki_ref": "wiki/entities/kmesh-kpath.md",
+      "source_id": "pyatb-input-reference",
+      "severity": "warning",
+      "blocking": false,
+      "summary": "k-mesh or kpath density may be too coarse"
+    },
+    "PYATB607": {
+      "wiki_ref": "wiki/synthesis/diagnostic-codes.md",
+      "source_id": "pyatb-official-docs",
+      "severity": "information",
+      "blocking": false,
+      "summary": "runtime version assumption recorded"
+    },
+    "PYATB608": {
+      "wiki_ref": "wiki/entities/tightbinding.md",
+      "source_id": "pyatb-input-reference",
+      "severity": "error",
+      "blocking": true,
+      "summary": "calculation keyword/version mismatch"
+    },
+    "PYATB-E070": {
+      "wiki_ref": "wiki/synthesis/diagnostic-codes.md",
+      "source_id": "pyatb-lsp-diagnostic-engine",
+      "severity": "error",
+      "blocking": true,
+      "summary": "Python syntax error"
+    },
+    "PYATB-E071": {
+      "wiki_ref": "wiki/synthesis/diagnostic-codes.md",
+      "source_id": "pyatb-official-docs",
+      "severity": "error",
+      "blocking": true,
+      "summary": "missing pyatb import"
+    },
+    "PYATB-E074": {
+      "wiki_ref": "wiki/entities/hr-sr-files.md",
+      "source_id": "pyatb-input-reference",
+      "severity": "error",
+      "blocking": true,
+      "summary": "missing structure or file reference"
+    },
+    "PYATB-E075": {
+      "wiki_ref": "wiki/synthesis/log-parser.md",
+      "source_id": "pyatb-lsp-diagnostic-engine",
+      "severity": "error",
+      "blocking": true,
+      "summary": "runtime log error"
+    }
+  }
+}
