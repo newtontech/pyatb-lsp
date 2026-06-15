@@ -1,4 +1,4 @@
-"""Invalid PyATB script - missing output path (PYATB-W070 warning)."""
+"""Invalid PyATB script - missing result directory specification."""
 
 import pyatb
 
