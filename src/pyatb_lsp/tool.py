@@ -14,6 +14,7 @@ from typing import Any, cast
 
 from .agent_operations import operation_path, with_capabilities
 from .rich_diagnostics import agent_check_payload
+from .skill_export import export_skill, skill_spec_text
 
 SOFTWARE = "pyatb"
 INTENT_DIR = ".pyatb-lsp"
@@ -302,6 +303,10 @@ def _agent_json(path: Path) -> dict[str, Any]:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="pyatb-lsp-tool")
     subparsers = parser.add_subparsers(dest="operation", required=True)
+    skill_spec = subparsers.add_parser("skill-spec")
+    skill_spec.add_argument("--format", choices=["json", "yaml"], default="json")
+    skill_export = subparsers.add_parser("skill-export")
+    skill_export.add_argument("--output", type=Path, required=True)
     capabilities = subparsers.add_parser("capabilities")
     capabilities.add_argument("--format", choices=["json"], default="json")
     for operation in (
@@ -352,6 +357,13 @@ def main(argv: list[str] | None = None) -> int:
             )
 
     args = parser.parse_args(argv)
+
+    if args.operation == "skill-spec":
+        print(skill_spec_text(args.format))
+        return 0
+    if args.operation == "skill-export":
+        print(json.dumps(export_skill(args.output), indent=2, sort_keys=True))
+        return 0
 
     if args.operation == "capabilities":
         print(json.dumps(_capabilities_payload(), indent=2, sort_keys=True))
