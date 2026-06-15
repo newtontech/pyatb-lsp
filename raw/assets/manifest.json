@@ -1,0 +1,99 @@
+{
+  "manifest_version": "1.0.0",
+  "schema_version": "provenance-manifest-v1",
+  "created_at": "2026-06-15T16:26:45+00:00",
+  "repository": "pyatb-lsp",
+  "pipeline": "official-docs -> raw/assets -> wiki -> docstrings -> LSP runtime",
+  "entries": [
+    {
+      "path": "DIAGNOSTIC_ENGINE_V1.md",
+      "raw_path": "raw/assets/DIAGNOSTIC_ENGINE_V1.md",
+      "bytes": 1928,
+      "checksum_sha256": "11f7a7c6fa42a3411a5801eb79b36c8b39b6021a19021547c85d0e3b7eaa59dd"
+    },
+    {
+      "path": "README.md",
+      "raw_path": "raw/assets/README.md",
+      "bytes": 1131,
+      "checksum_sha256": "35599aa906db475dc070b05ed4f4687a20c8ccc801ed96d51afc14a23b59b815"
+    },
+    {
+      "path": "analyzer.py",
+      "raw_path": "raw/assets/analyzer.py",
+      "bytes": 23259,
+      "checksum_sha256": "d2e7318bc215cb868dbcd6f75c0317466039c3f83badd2878015daf62ba7c7d6"
+    },
+    {
+      "path": "complete_valid.py",
+      "raw_path": "raw/assets/complete_valid.py",
+      "bytes": 201,
+      "checksum_sha256": "d10ccb114ff409ed8a741105d58df0e35b3605164d94726da937a1deff5c82e6"
+    },
+    {
+      "path": "pyatb-abacus-integration.md",
+      "raw_path": "raw/assets/pyatb-abacus-integration.md",
+      "bytes": 4113,
+      "checksum_sha256": "84535d068c0ac1966941c6fa6cf468e5100489eccd50ce510d2ca659aaa65c5f"
+    },
+    {
+      "path": "pyatb-examples.md",
+      "raw_path": "raw/assets/pyatb-examples.md",
+      "bytes": 15950,
+      "checksum_sha256": "1208e585c1854c1297606ca4b72f331b2a85d9e0480f81b4d1c16a3733b001ca"
+    },
+    {
+      "path": "pyatb-input-reference.md",
+      "raw_path": "raw/assets/pyatb-input-reference.md",
+      "bytes": 16631,
+      "checksum_sha256": "a52bd2f3ecee6d229a97298f4dbd2362de70dd99df4e2e0ddfcce216cc993518"
+    },
+    {
+      "path": "pyatb-introduction.md",
+      "raw_path": "raw/assets/pyatb-introduction.md",
+      "bytes": 4680,
+      "checksum_sha256": "05038a94ffaff8197982d4505c3e2a40e3857568b81c7376d1b7af694146d499"
+    },
+    {
+      "path": "pyatb-official-docs.json",
+      "raw_path": "raw/assets/pyatb-official-docs.json",
+      "bytes": 12042,
+      "checksum_sha256": "cf6885b6b89fed1d05e471dd8efc72c55066ab5b0e8b4d8ed6ed3869689478d0"
+    },
+    {
+      "path": "pyatb-readme.md",
+      "raw_path": "raw/assets/pyatb-readme.md",
+      "bytes": 3487,
+      "checksum_sha256": "1c402f5adc345b32f55f8cd14874d8950c42e9ef1cbae91e801064c5325f6df3"
+    },
+    {
+      "path": "pyatb-related-tools.md",
+      "raw_path": "raw/assets/pyatb-related-tools.md",
+      "bytes": 3287,
+      "checksum_sha256": "161ceff8a4b390a94db8408a8d887c7ed2e89fee40423460fbcf5c63666cb363"
+    },
+    {
+      "path": "pyatb-theory.md",
+      "raw_path": "raw/assets/pyatb-theory.md",
+      "bytes": 6011,
+      "checksum_sha256": "5cdec39f7a6be6da87e02e703ac5178f566225e71f5ffc35663aa3abadcfb032"
+    },
+    {
+      "path": "pyatb-transport-implementation.md",
+      "raw_path": "raw/assets/pyatb-transport-implementation.md",
+      "bytes": 5028,
+      "checksum_sha256": "729caf07e273003ba1d7401094cd5a4e02ef9f8dcb38c6344249ef2c467a9b8c"
+    },
+    {
+      "path": "server.py",
+      "raw_path": "raw/assets/server.py",
+      "bytes": 21893,
+      "checksum_sha256": "2da119b3f0e31a12e7794ae099345393a90a42d15a072f6eefa8d7b3d5b5fa89"
+    },
+    {
+      "path": "source-provenance.json",
+      "raw_path": "raw/assets/source-provenance.json",
+      "bytes": 2468,
+      "checksum_sha256": "f46fdd77c2cf957308d22877c0ca0ef5bd42f16d09a7d3a11b74e1cfee900268"
+    }
+  ]
+}

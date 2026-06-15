@@ -34,7 +34,8 @@
     "rich-diagnostics",
     "routing",
     "source-provenance",
-    "symbols"
+    "symbols",
+    "traceability"
   ],
   "agentCli": {
     "command": "pyatb-lsp-tool",
@@ -137,6 +138,13 @@
     "tests",
     "lsp-runtime"
   ],
+  "traceability": {
+    "issue": "https://github.com/newtontech/pyatb-lsp/issues/50",
+    "checker": "scripts/check_docstring_traceability.py",
+    "report": "reports/docstring-wiki-raw-traceability.json",
+    "mode": "report-only",
+    "strictMode": "available"
+  },
   "ruleIndex": "src/pyatb_lsp/schema/pyatb_rules.json",
   "provenanceUpdatedAt": "2026-06-15T09:22:49+00:00"
 }
