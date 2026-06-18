@@ -1,0 +1,31 @@
+schema: scientific-lsp-skill/v1
+name: pyatb
+software: pyatb
+display_name: PyATB
+description: PyATB workflow preflight for generated input scripts.
+package:
+  name: pyatb-lsp
+  install: pip install pyatb-lsp
+entrypoints:
+  server: pyatb-lsp
+  tool: pyatb-lsp-tool
+file_patterns:
+  - "*.pyatb.py"
+  - run_pyatb.py
+operations:
+  - capabilities
+  - check
+  - context
+  - complete
+  - hover
+  - symbols
+  - fix
+diagnostic_contract: DiagnosticEnvelope/v1
+blocking_policy:
+  mode: fail-on-blocking
+  description: Use --fail-on-blocking when generated inputs must be launch-ready.
+source_provenance:
+  -
+    kind: official_docs
+    label: PyATB documentation
+    url: https://pyatb.github.io/pyatb/

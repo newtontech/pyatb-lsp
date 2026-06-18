@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "pyatb-lsp"
-version = "0.1.0"
+version = "0.1.1rc1"
 description = "Language Server Protocol and CLI tools for PyATB workflow scripts"
 readme = "README.md"
 license = { text = "MIT" }
@@ -48,6 +48,10 @@ pyatb-fmt = "pyatb_lsp.cli:fmt_main"
 pyatb-test = "pyatb_lsp.cli:test_main"
 pyatb-lsp-tool = "pyatb_lsp.tool:main"
 pyatb-log = "pyatb_lsp.cli:log_main"
+
+
+[tool.hatch.build.force-include]
+"skill" = "skill"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/pyatb_lsp"]
